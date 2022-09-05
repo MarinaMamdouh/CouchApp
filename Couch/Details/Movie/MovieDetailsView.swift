@@ -34,7 +34,7 @@ struct MovieDetailsView: View {
                         .font(.title2)
                     
                     HStack(spacing: 010){
-                        Image(systemName: "star.fill")
+                        Image(systemName: Constants.Symbols.starFillSymbol)
                             .font(.title2)
                             .foregroundColor(.orange)
                             
@@ -46,7 +46,7 @@ struct MovieDetailsView: View {
                     
                     
                     HStack{
-                        Text("The Plot")
+                        Text(Constants.Texts.plotTitle)
                             .padding()
                             .foregroundColor(.white)
                             .font(.title)
@@ -59,7 +59,7 @@ struct MovieDetailsView: View {
                     
                     Spacer()
                     HStack{
-                        Text("Duration :")
+                        Text("\(Constants.Texts.duration) :")
                             .padding(.leading)
                             .padding([.bottom, .top], 10)
                             .foregroundColor(.orange)
