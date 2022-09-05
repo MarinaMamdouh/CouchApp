@@ -8,14 +8,15 @@
 import Foundation
 
 class ContentListViewModel: ObservableObject{
-    @Published var contentList:[String]
+    @Published var contentList:[Content]
     @Published private(set) var isLoading = false
+    //TODO: add API property
     private var offset = 0
     private let totalPages = 100
     private let pageSize = 10
     init(){
         contentList = (1...10).map { i in
-            "Movie \(i)"
+            Content(id: i, title: "Movies \(i)", posterPath: "")
         }
         offset = pageSize
     }
@@ -36,7 +37,7 @@ class ContentListViewModel: ObservableObject{
             let start = self.offset + 1
             let end = self.offset + 10
             let newContent = (start...end).map { i in
-                "Movie \(i)"
+                Content(id: i, title: "Movies \(i)", posterPath: "")
             }
             self.contentList.append(contentsOf: newContent)
             self.offset += self.pageSize
@@ -44,4 +45,10 @@ class ContentListViewModel: ObservableObject{
         }
        
     }
+}
+
+struct Content{
+    var id: Int
+    var title: String
+    var posterPath: String
 }

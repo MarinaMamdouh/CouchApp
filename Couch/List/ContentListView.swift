@@ -19,7 +19,7 @@ struct ContentListView: View {
                     
                     ForEach(0...viewModel.contentList.count - 1, id: \.self) { index in
                         
-                        ContentGridCell(title: viewModel.contentList[index], contentImage:defaultImage)
+                        ContentGridCell(title: viewModel.contentList[index].title, contentImage:defaultImage)
                             .onAppear{
                                 viewModel.loadMoreIfPossible(index)
                             }

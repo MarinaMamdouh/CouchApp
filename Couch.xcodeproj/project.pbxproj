@@ -15,6 +15,10 @@
 		F82FB58E28C640890017E307 /* CouchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FB58D28C640890017E307 /* CouchUITests.swift */; };
 		F82FB59028C640890017E307 /* CouchUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FB58F28C640890017E307 /* CouchUITestsLaunchTests.swift */; };
 		F82FB5A228C651F40017E307 /* ContentListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FB5A128C651F40017E307 /* ContentListViewModel.swift */; };
+		F82FB5A528C671BC0017E307 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FB5A428C671BC0017E307 /* HomeView.swift */; };
+		F82FB5A728C6818D0017E307 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FB5A628C6818D0017E307 /* Constants.swift */; };
+		F82FB5AB28C685740017E307 /* FilterBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FB5AA28C685740017E307 /* FilterBarView.swift */; };
+		F82FB5AD28C689460017E307 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FB5AC28C689460017E307 /* HomeViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +50,10 @@
 		F82FB58D28C640890017E307 /* CouchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouchUITests.swift; sourceTree = "<group>"; };
 		F82FB58F28C640890017E307 /* CouchUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouchUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		F82FB5A128C651F40017E307 /* ContentListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentListViewModel.swift; sourceTree = "<group>"; };
+		F82FB5A428C671BC0017E307 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		F82FB5A628C6818D0017E307 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		F82FB5AA28C685740017E307 /* FilterBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterBarView.swift; sourceTree = "<group>"; };
+		F82FB5AC28C689460017E307 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,8 +104,11 @@
 		F82FB57128C640880017E307 /* Couch */ = {
 			isa = PBXGroup;
 			children = (
+				F82FB5A328C671AB0017E307 /* Home */,
 				F82FB59E28C6514D0017E307 /* List */,
+				F82FB5A928C685490017E307 /* CustomViews */,
 				F82FB57228C640880017E307 /* CouchApp.swift */,
+				F82FB5A628C6818D0017E307 /* Constants.swift */,
 				F82FB57628C640880017E307 /* Assets.xcassets */,
 				F82FB57828C640880017E307 /* Preview Content */,
 			);
@@ -136,6 +147,23 @@
 				F82FB5A128C651F40017E307 /* ContentListViewModel.swift */,
 			);
 			path = List;
+			sourceTree = "<group>";
+		};
+		F82FB5A328C671AB0017E307 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				F82FB5A428C671BC0017E307 /* HomeView.swift */,
+				F82FB5AC28C689460017E307 /* HomeViewModel.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		F82FB5A928C685490017E307 /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				F82FB5AA28C685740017E307 /* FilterBarView.swift */,
+			);
+			path = CustomViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -268,8 +296,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F82FB5A728C6818D0017E307 /* Constants.swift in Sources */,
 				F82FB57528C640880017E307 /* ContentListView.swift in Sources */,
+				F82FB5AD28C689460017E307 /* HomeViewModel.swift in Sources */,
+				F82FB5A528C671BC0017E307 /* HomeView.swift in Sources */,
 				F82FB57328C640880017E307 /* CouchApp.swift in Sources */,
+				F82FB5AB28C685740017E307 /* FilterBarView.swift in Sources */,
 				F82FB5A228C651F40017E307 /* ContentListViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
