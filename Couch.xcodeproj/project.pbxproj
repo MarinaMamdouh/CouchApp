@@ -8,12 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		F82FB57328C640880017E307 /* CouchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FB57228C640880017E307 /* CouchApp.swift */; };
-		F82FB57528C640880017E307 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FB57428C640880017E307 /* ContentView.swift */; };
+		F82FB57528C640880017E307 /* ContentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FB57428C640880017E307 /* ContentListView.swift */; };
 		F82FB57728C640880017E307 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F82FB57628C640880017E307 /* Assets.xcassets */; };
 		F82FB57A28C640880017E307 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F82FB57928C640880017E307 /* Preview Assets.xcassets */; };
 		F82FB58428C640890017E307 /* CouchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FB58328C640890017E307 /* CouchTests.swift */; };
 		F82FB58E28C640890017E307 /* CouchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FB58D28C640890017E307 /* CouchUITests.swift */; };
 		F82FB59028C640890017E307 /* CouchUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FB58F28C640890017E307 /* CouchUITestsLaunchTests.swift */; };
+		F82FB5A228C651F40017E307 /* ContentListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FB5A128C651F40017E307 /* ContentListViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +37,7 @@
 /* Begin PBXFileReference section */
 		F82FB56F28C640880017E307 /* Couch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Couch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F82FB57228C640880017E307 /* CouchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouchApp.swift; sourceTree = "<group>"; };
-		F82FB57428C640880017E307 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		F82FB57428C640880017E307 /* ContentListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentListView.swift; sourceTree = "<group>"; };
 		F82FB57628C640880017E307 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F82FB57928C640880017E307 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F82FB57F28C640890017E307 /* CouchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CouchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +45,7 @@
 		F82FB58928C640890017E307 /* CouchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CouchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F82FB58D28C640890017E307 /* CouchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouchUITests.swift; sourceTree = "<group>"; };
 		F82FB58F28C640890017E307 /* CouchUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouchUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		F82FB5A128C651F40017E307 /* ContentListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentListViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,8 +96,8 @@
 		F82FB57128C640880017E307 /* Couch */ = {
 			isa = PBXGroup;
 			children = (
+				F82FB59E28C6514D0017E307 /* List */,
 				F82FB57228C640880017E307 /* CouchApp.swift */,
-				F82FB57428C640880017E307 /* ContentView.swift */,
 				F82FB57628C640880017E307 /* Assets.xcassets */,
 				F82FB57828C640880017E307 /* Preview Content */,
 			);
@@ -125,6 +127,15 @@
 				F82FB58F28C640890017E307 /* CouchUITestsLaunchTests.swift */,
 			);
 			path = CouchUITests;
+			sourceTree = "<group>";
+		};
+		F82FB59E28C6514D0017E307 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				F82FB57428C640880017E307 /* ContentListView.swift */,
+				F82FB5A128C651F40017E307 /* ContentListViewModel.swift */,
+			);
+			path = List;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,8 +268,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F82FB57528C640880017E307 /* ContentView.swift in Sources */,
+				F82FB57528C640880017E307 /* ContentListView.swift in Sources */,
 				F82FB57328C640880017E307 /* CouchApp.swift in Sources */,
+				F82FB5A228C651F40017E307 /* ContentListViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,6 +437,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -454,6 +467,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

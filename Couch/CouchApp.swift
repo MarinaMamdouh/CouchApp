@@ -11,7 +11,7 @@ import SwiftUI
 struct CouchApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentListView()
         }
     }
 }
