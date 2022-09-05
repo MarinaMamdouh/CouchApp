@@ -41,7 +41,7 @@ struct ContentGridCell: View {
     @State var title: String
     @State var contentImage: UIImage
     var body: some View {
-        VStack {
+        ZStack {
             Text(title)
             Image(uiImage: contentImage)
                 .resizable()
