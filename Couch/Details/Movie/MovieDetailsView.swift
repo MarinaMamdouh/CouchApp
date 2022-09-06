@@ -11,64 +11,23 @@ struct MovieDetailsView: View {
     var movieDetails = MovieDetails.example
     var body: some View {
         ZStack{
-            Color(Constants.UIColors.defaultBackgroundColor)
+            Color.theme.background
                 .ignoresSafeArea()
             ScrollView {
                 VStack{
-                    Image("DefaultBackdrop")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .opacity(0.8)
-                        .shadow(color: .black, radius: 30, x: 0, y: 5)
-                    Text(movieDetails.originalTitle)
-                        .padding(.top)
-                        .foregroundColor(.white)
-                        .font(.largeTitle)
+                    movieImage
                     
-                    Text("(\(movieDetails.releaseDate))")
-                        .foregroundColor(.white)
-                        .font(.title)
-                    Text(movieDetails.genres)
-                        .foregroundColor(Color(UIColor.lightGray))
-                        .padding(.all, 5)
-                        .font(.title2)
+                    movieTitle
                     
-                    HStack(spacing: 010){
-                        Image(systemName: Constants.Symbols.starFillSymbol)
-                            .font(.title2)
-                            .foregroundColor(.orange)
-                            
-                        Text("\(movieDetails.rating)/ 10")
-                            .foregroundColor(.white)
-                            .font(.system(size: 20, weight: .bold, design: .default))
-                            
-                    }
+                    movieYear
                     
+                    movieGenres
                     
-                    HStack{
-                        Text(Constants.Texts.plotTitle)
-                            .padding()
-                            .foregroundColor(.white)
-                            .font(.title)
-                        Spacer()
-                    }
-                    Text(movieDetails.overView)
-                        .padding([.leading, .trailing])
-                        .foregroundColor(.gray)
-                        .font(.body)
+                    movieRating
                     
-                    Spacer()
-                    HStack{
-                        Text("\(Constants.Texts.duration) :")
-                            .padding(.leading)
-                            .padding([.bottom, .top], 10)
-                            .foregroundColor(.orange)
-                            .font(.title3)
-                        Text("\(movieDetails.runTime) mins")
-                            .foregroundColor(Color(UIColor.lightGray))
-                            .font(.title3)
-                            Spacer()
-                    }
+                    moviePlot
+                    
+                    movieDuration
                 }
             }
         }
@@ -78,6 +37,79 @@ struct MovieDetailsView: View {
 struct MovieDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         MovieDetailsView()
+    }
+}
+
+extension MovieDetailsView{
+    var movieImage: some View{
+        Image("DefaultBackdrop")
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .opacity(0.8)
+            .shadow(color: .black, radius: 30, x: 0, y: 5)
+    }
+    
+    var movieTitle: some View{
+        Text(movieDetails.originalTitle)
+            .padding(.top)
+            .foregroundColor(Color.theme.primary)
+            .font(.largeTitle)
+    }
+    
+    var movieYear: some View{
+        Text("(\(movieDetails.releaseDate))")
+            .foregroundColor(Color.theme.primary)
+            .font(.title)
+    }
+    
+    var movieGenres: some View{
+        Text(movieDetails.genres)
+            .foregroundColor(Color.theme.secondary)
+            .padding(.all, 5)
+            .font(.title2)
+    }
+    
+    var movieRating: some View{
+        HStack(spacing: 010){
+            Image(systemName: Constants.Symbols.starFillSymbol)
+                .font(.title2)
+                .foregroundColor(Color.theme.accent)
+            
+            Text("\(movieDetails.rating)/ 10")
+                .foregroundColor(Color.theme.primary)
+                .font(.system(size: 20, weight: .bold, design: .default))
+            
+        }
+    }
+    
+    var moviePlot: some View{
+        VStack{
+            HStack{
+                Text(Constants.Texts.plotTitle)
+                    .padding()
+                    .foregroundColor(Color.theme.primary)
+                    .font(.title)
+                Spacer()
+            }
+            Text(movieDetails.overView)
+                .padding([.leading, .trailing])
+                .foregroundColor(Color.theme.secondary)
+                .font(.body)
+        }
+    }
+    
+    var movieDuration: some View{
+        HStack{
+            Text("\(Constants.Texts.duration) :")
+                .padding(.leading)
+                .padding([.bottom, .top], 10)
+                .foregroundColor(Color.theme.accent)
+                .font(.title3)
+            Text("\(movieDetails.runTime) mins")
+                .foregroundColor(Color.theme.secondary)
+                .font(.title3)
+            Spacer()
+        }
     }
 }
 

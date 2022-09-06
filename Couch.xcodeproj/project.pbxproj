@@ -114,7 +114,6 @@
 			children = (
 				F82FB5B028C693750017E307 /* Details */,
 				F82FB5A328C671AB0017E307 /* Home */,
-				F82FB59E28C6514D0017E307 /* List */,
 				F82FB5A928C685490017E307 /* CustomViews */,
 				F82FB5B428C6A3140017E307 /* Constants */,
 				F82FB57228C640880017E307 /* CouchApp.swift */,
@@ -161,6 +160,7 @@
 		F82FB5A328C671AB0017E307 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				F82FB59E28C6514D0017E307 /* List */,
 				F82FB5A428C671BC0017E307 /* HomeView.swift */,
 				F82FB5AC28C689460017E307 /* HomeViewModel.swift */,
 			);

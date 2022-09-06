@@ -9,32 +9,22 @@ import SwiftUI
 
 struct HomeView: View {
     
-    let backgroundColor = Constants.UIColors.defaultBackgroundColor
-    
     let filterBarItems = [ Constants.Texts.mostPopularFilterBarItem, Constants.Texts.topRatedFilterBarItem ]
     
-    init() {
-        let navBarAppearance = UINavigationBar.appearance()
-        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-        navBarAppearance.barTintColor = .black
-        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-    }
-    
     var body: some View {
-        NavigationView {
             ZStack {
-                Color(backgroundColor).edgesIgnoringSafeArea(.all)
-                VStack{
+                Color.theme.background
+                    .edgesIgnoringSafeArea(.all)
+                VStack(alignment: .leading){
+                    header
+                    
                     FilterBarView(barItems: filterBarItems)
-                        .padding()
+                    
                     ContentListView()
-                        .padding(.top, 20)
 
                 }
-                .navigationBarTitle(Constants.Texts.moviesTitle)
                 
             }
-        }
         
     }
     
@@ -45,7 +35,20 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        NavigationView{
+            HomeView()
+                .navigationBarHidden(true)
+        }
+        
+    }
+}
+
+extension HomeView{
+    var header: some View{
+        Text(Constants.Texts.moviesTitle)
+            .padding()
+            .foregroundColor(Color.theme.primary)
+            .font(.largeTitle.bold())
     }
 }
 

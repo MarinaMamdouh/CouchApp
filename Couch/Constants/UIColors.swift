@@ -8,8 +8,18 @@
 import Foundation
 import SwiftUI
 
-extension Constants{
-    struct UIColors{
-        static let defaultBackgroundColor = UIColor(red: 26.0/255.0, green: 26.0/255.0, blue: 26.0/255.0, alpha: 1.0)
-    }
+extension Color{
+    static let theme = ColorTheme()
 }
+
+struct ColorTheme{
+     let background = Color("BackgroundColor")
+     let primary = Color("PrimaryColor")
+     let secondary = Color("SecondaryColor")
+     let accent = Color("AccentColor")
+}
+//extension Constants{
+//    struct UIColors{
+//        static let defaultBackgroundColor = UIColor(red: 26.0/255.0, green: 26.0/255.0, blue: 26.0/255.0, alpha: 1.0)
+//    }
+//}

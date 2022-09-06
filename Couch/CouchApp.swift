@@ -11,7 +11,10 @@ import SwiftUI
 struct CouchApp: App {
     var body: some Scene {
         WindowGroup {
-            HomeView()
+            NavigationView{
+                HomeView()
+                    .navigationBarHidden(true)
+            }
         }
     }
 }
