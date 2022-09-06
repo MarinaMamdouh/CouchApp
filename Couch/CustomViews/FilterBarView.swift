@@ -8,14 +8,29 @@
 import SwiftUI
 
 struct FilterBarView: View {
-    var barItems:[String]
     @State var selectedItem:Int = 0
+    var barItems:[String]
+    var itemIsSelected:(Int) -> Void
     var body: some View {
         ScrollView(.horizontal){
             content
         }
         .padding()
         
+    }
+}
+
+extension FilterBarView{
+    var content: some View {
+        HStack(spacing: 20){
+            ForEach(barItems.indices, id: \.self){ index in
+                FilterBarItem(title: barItems[index], isSelected: (selectedItem == index))
+                    .onTapGesture {
+                        selectedItem = index
+                        itemIsSelected(index)
+                    }
+            }
+        }
     }
 }
 
@@ -37,22 +52,13 @@ struct FilterBarItem: View {
 struct FilterBarView_Previews: PreviewProvider {
     static let filterBarItems = ["Most Popular", "Top Rated", "New" ]
     static var previews: some View {
-            FilterBarView(barItems: filterBarItems, selectedItem: 0)
+        FilterBarView(barItems: filterBarItems, itemIsSelected: { selectedItem in
+            // inform the parentView
+        })
             .background(Color.theme.background)
             .previewLayout(.sizeThatFits)
         
     }
 }
 
-extension FilterBarView{
-    var content: some View {
-        HStack(spacing: 20){
-            ForEach(0...barItems.count - 1, id: \.self){ index in
-                FilterBarItem(title: barItems[index], isSelected: (selectedItem == index))
-                    .onTapGesture {
-                        selectedItem = index
-                    }
-            }
-        }
-    }
-}
+

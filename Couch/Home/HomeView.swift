@@ -8,28 +8,37 @@
 import SwiftUI
 
 struct HomeView: View {
-    
-    let filterBarItems = [ Constants.Texts.mostPopularFilterBarItem, Constants.Texts.topRatedFilterBarItem ]
+    @StateObject var viewModel = HomeViewModel()
+    let filterBarItems = [ Constants.Texts.mostPopularFilterBarItem : ListType.mostPopular , Constants.Texts.topRatedFilterBarItem : ListType.topRated ]
     
     var body: some View {
-            ZStack {
-                Color.theme.background
-                    .edgesIgnoringSafeArea(.all)
-                VStack(alignment: .leading){
-                    header
-                    
-                    FilterBarView(barItems: filterBarItems)
-                    
-                    ContentListView()
-
-                }
+        ZStack {
+            Color.theme.background
+                .edgesIgnoringSafeArea(.all)
+            VStack(alignment: .leading){
+                header
+                
+                FilterBarView(barItems: Array(filterBarItems.keys), itemIsSelected: { selectedItem in
+                    chooseList(selectedItem)
+                })
+                
+                MoviesListView(movieList: $viewModel.moviesList,
+                               
+                loadMoreAction: {
+                    viewModel.getMoreMovies()
+                })
                 
             }
+            
+        }
         
     }
     
-    func loadTopRatedView() -> some View{
-        return ContentListView(viewModel: ContentListViewModel())
+    func chooseList(_ selectedIndex:Int){
+        let allKeys = Array(filterBarItems.keys)
+        let key =  allKeys[selectedIndex]
+        let selectedListType = filterBarItems[key] ?? .mostPopular
+        viewModel.currentSorting = selectedListType
     }
 }
 
@@ -50,11 +59,13 @@ extension HomeView{
             .foregroundColor(Color.theme.primary)
             .font(.largeTitle.bold())
     }
+    
+    
 }
 
 struct FilterItem{
     var title: String
-    var contentListView: ContentListView
+    var contentListView: MoviesListView
 }
 
 
