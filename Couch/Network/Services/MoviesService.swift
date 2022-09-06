@@ -12,13 +12,21 @@ import Combine
 //
 class MoviesService{
     @Published var moviesList:[MovieModel] = []
-    private let listType:ListType
+    private var listType:ListType
     private var currentPage:Int = 0
     private var totalPages:Int = -1
     private var movieSubscription: AnyCancellable?
     
     init(listType:ListType) {
         self.listType = listType
+        getMovies()
+    }
+    
+    func changeListType(_ listType: ListType){
+        moviesList = []
+        self.listType = listType
+        currentPage = 0
+        totalPages = -1
         getMovies()
     }
     

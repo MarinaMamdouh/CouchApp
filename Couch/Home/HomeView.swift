@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @StateObject var viewModel = HomeViewModel()
+    
     let filterBarItems = [ Constants.Texts.mostPopularFilterBarItem : ListType.mostPopular , Constants.Texts.topRatedFilterBarItem : ListType.topRated ]
     
     var body: some View {
@@ -22,11 +23,7 @@ struct HomeView: View {
                     chooseList(selectedItem)
                 })
                 
-                MoviesListView(movieList: $viewModel.moviesList,
-                               
-                loadMoreAction: {
-                    viewModel.getMoreMovies()
-                })
+                moviesListView
                 
             }
             
@@ -58,6 +55,33 @@ extension HomeView{
             .padding()
             .foregroundColor(Color.theme.primary)
             .font(.largeTitle.bold())
+    }
+    
+    var moviesListView: some View{
+        ZStack{
+            switch viewModel.currentSorting{
+            case .topRated:
+                topRatedMoviesList
+            case .mostPopular:
+                mostPopularMoviesList
+            }
+        }
+    }
+    
+    var topRatedMoviesList: some View{
+        MoviesListView(movieList: $viewModel.topRatedMovies,
+                       
+                       loadMoreAction: {
+            viewModel.getMoreMovies()
+        })
+    }
+    
+    var mostPopularMoviesList: some View{
+        MoviesListView(movieList: $viewModel.mostPopularMovies,
+                       
+                       loadMoreAction: {
+            viewModel.getMoreMovies()
+        })
     }
     
     

@@ -9,34 +9,43 @@ import Foundation
 import Combine
 
 class HomeViewModel: ObservableObject{
-    @Published var moviesList:[MovieModel] = []
-    var currentSorting:ListType{
-        didSet{
-            moviesList = []
-            movieService = MoviesService(listType: currentSorting)
-            subscribeToServices()
-        }
-    }
+    @Published var topRatedMovies:[MovieModel] = []
+    @Published var mostPopularMovies:[MovieModel] = []
     
-    private var movieService: MoviesService
+    @Published var currentSorting:ListType
+    private var topRatedMovieService: MoviesService
+    private var mostPopularMovieService: MoviesService
     private var cancellables = Set<AnyCancellable>()
     
     init(){
         currentSorting = .mostPopular
-        movieService = MoviesService(listType: .mostPopular)
+        mostPopularMovieService = MoviesService(listType: .mostPopular)
+        topRatedMovieService = MoviesService(listType: .topRated)
         subscribeToServices()
     }
     
     private func subscribeToServices(){
-        movieService.$moviesList
+        topRatedMovieService.$moviesList
             .sink { [weak self] (recievedMovies) in
-                self?.moviesList = recievedMovies
+                self?.topRatedMovies = recievedMovies
+            }
+            .store(in: &cancellables)
+        
+        mostPopularMovieService.$moviesList
+            .sink {[weak self] (recievedMovies) in
+                self?.mostPopularMovies = recievedMovies
             }
             .store(in: &cancellables)
     }
     
     func getMoreMovies(){
-        movieService.getMovies()
+        switch currentSorting {
+        case .topRated:
+            topRatedMovieService.getMovies()
+        case .mostPopular:
+            mostPopularMovieService.getMovies()
+        }
+        
     }
 
 }
