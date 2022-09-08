@@ -10,7 +10,11 @@ import SwiftUI
 struct MoviesListView: View {
 
     @Binding var movieList: [MovieModel]
-    var loadMoreAction: () -> Void
+    @Binding var loadingMoreData: Bool
+    
+    private var lastMovieIndex: Int{
+        return movieList.count - 1
+    }
     
     let columnsLayout = [
         GridItem(.adaptive(minimum: 150, maximum: 185), spacing: 20)
@@ -18,8 +22,9 @@ struct MoviesListView: View {
     var body: some View {
         ScrollView() {
             gridView
-            
+            if loadingMoreData{
                 progressView
+            }
         }
     }
     
@@ -34,12 +39,10 @@ extension MoviesListView{
                 
                 MovieGridCell(movie: movieList[index])
                     .onAppear{
-                        if index == movieList.count - 1{
-                            
-                            loadMoreAction()
+                        if index == lastMovieIndex {
+                            loadingMoreData = true
                         }
                     }
-                
             }
             
         }
@@ -60,9 +63,7 @@ struct ContentView_Previews: PreviewProvider {
         MovieModel(id: i, originalTitle: "Movie \(i)", title: "Movie \(i)", posterPath: "")
     }
     static var previews: some View {
-        MoviesListView(movieList: .constant(contentList), loadMoreAction:{
-            
-        })
+        MoviesListView(movieList: .constant(contentList), loadingMoreData: .constant(true))
             .background(Color.theme.background)
             .previewLayout(.sizeThatFits)
     }

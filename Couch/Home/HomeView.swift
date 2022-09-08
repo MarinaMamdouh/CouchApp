@@ -10,9 +10,6 @@ import SwiftUI
 struct HomeView: View {
     @StateObject var viewModel = HomeViewModel()
     
-    
-    let filterBarItems = [ Constants.Texts.mostPopularFilterBarItem : ListType.mostPopular , Constants.Texts.topRatedFilterBarItem : ListType.topRated ]
-    
     var body: some View {
         ZStack {
             Color.theme.background
@@ -26,23 +23,6 @@ struct HomeView: View {
                 
             }
             
-        }
-        
-    }
-    
-    func chooseList(_ selectedIndex:Int){
-        let allKeys = Array(filterBarItems.keys)
-        let key =  allKeys[selectedIndex]
-        let selectedListType = filterBarItems[key] ?? .mostPopular
-        viewModel.currentSorting = selectedListType
-    }
-}
-
-struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView{
-            HomeView()
-                .navigationBarHidden(true)
         }
         
     }
@@ -68,27 +48,25 @@ extension HomeView{
     }
     
     var topRatedMoviesList: some View{
-        MoviesListView(movieList: $viewModel.topRatedMovies,
-                       
-                       loadMoreAction: {
-            //viewModel.getMoreMovies()
-        })
+        MoviesListView(movieList: $viewModel.topRatedMovies, loadingMoreData: $viewModel.isLoading)
     }
     
     var mostPopularMoviesList: some View{
-        MoviesListView(movieList: $viewModel.mostPopularMovies,
-                       
-                       loadMoreAction: {
-            //viewModel.getMoreMovies()
-        })
+        MoviesListView(movieList: $viewModel.mostPopularMovies, loadingMoreData: $viewModel.isLoading)
     }
     
     
 }
 
-struct FilterItem{
-    var title: String
-    var contentListView: MoviesListView
+
+struct HomeView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationView{
+            HomeView()
+                .navigationBarHidden(true)
+        }
+        
+    }
 }
 
 
