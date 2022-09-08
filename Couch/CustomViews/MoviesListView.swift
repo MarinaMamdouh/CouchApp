@@ -17,7 +17,7 @@ struct MoviesListView: View {
     }
     
     let columnsLayout = [
-        GridItem(.adaptive(minimum: 150, maximum: 185), spacing: 20)
+        GridItem(.adaptive(minimum: 150, maximum: Constants.ImageSizes.maxPosterSize.width), spacing: 20)
     ]
     var body: some View {
         ScrollView() {
@@ -38,15 +38,18 @@ extension MoviesListView{
             ForEach(movieList.indices, id: \.self) { index in
                 
                 MovieGridCell(movie: movieList[index])
+                   
                     .onAppear{
                         if index == lastMovieIndex {
                             loadingMoreData = true
                         }
                     }
+                    
             }
             
+            
         }
-        .padding(.horizontal, 10.0)
+        .padding()
     }
     
     var progressView: some View{
