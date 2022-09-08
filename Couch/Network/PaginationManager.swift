@@ -19,7 +19,7 @@ protocol Pagination{
 // Our Main Basic PaginationManager
 class PaginationManager: Pagination{
     private var currentPage:Int = 0
-    private var totalPages:Int = -1 // total pages in server are not defined yet
+    private let totalPages:Int = 500 // limit of moviedb pages
 
     func getNextPage()-> Int?{
         let nextPage = currentPage + 1
@@ -34,7 +34,6 @@ class PaginationManager: Pagination{
     }
     
     func save(totalPagesInServer: Int, lastPageLoaded:Int){
-        totalPages = totalPagesInServer
         currentPage = lastPageLoaded
     }
 }
