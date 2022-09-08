@@ -13,17 +13,21 @@ import Combine
 class MoviesService{
     @Published var moviesList:[MovieModel] = []
     private var listType:ListType
-    private var currentPage:Int = 0
-    private var totalPages:Int = -1
+    private var paginationManager: Pagination
     private var movieSubscription: AnyCancellable?
     
     init(listType:ListType) {
         self.listType = listType
+        self.paginationManager = PaginationManager()
         getMovies()
     }
-    
+    init(listType:ListType, pagination:Pagination){
+        self.listType = listType
+        self.paginationManager = pagination
+        getMovies()
+    }
     func getMovies(){
-        let nextPage = currentPage + 1
+        guard let nextPage = paginationManager.getNextPage() else { return }
         let api = getAPI(page: nextPage)
         let request = api.asRequest()
         
@@ -31,8 +35,7 @@ class MoviesService{
             .decode(type: MoviesResponse.self, decoder: JSONDecoder())
             .sink(receiveCompletion: NetworkManager.handleCompletion, receiveValue: { [weak self] movieResponse in
                 self?.moviesList.append(contentsOf: movieResponse.results)
-                self?.currentPage = movieResponse.page
-                self?.totalPages = movieResponse.totalPages
+                self?.paginationManager.save(totalPagesInServer: movieResponse.totalPages, lastPageLoaded: movieResponse.page)
                 self?.movieSubscription?.cancel()
         })
     }

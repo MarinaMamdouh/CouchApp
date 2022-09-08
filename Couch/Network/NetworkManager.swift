@@ -12,15 +12,17 @@ class NetworkManager{
     static func performRequest(_ request:URLRequest) -> AnyPublisher<Data, Error>{
          return URLSession.shared.dataTaskPublisher(for: request)
             .subscribe(on: DispatchQueue.global(qos: .default))
-            .tryMap { (output) -> Data in
-                guard let response = output.response as? HTTPURLResponse,
-                      response.statusCode >= 200 && response.statusCode < 300 else {
-                          throw URLError(.badServerResponse)
-                }
-                return output.data
-            }
+            .tryMap({ try handleResponse(from: request, output: $0) })
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
+    }
+    
+    private static func handleResponse(from request: URLRequest ,output: URLSession.DataTaskPublisher.Output) throws -> Data {
+        guard let response = output.response as? HTTPURLResponse,
+              response.statusCode >= 200 && response.statusCode < 300 else {
+            throw AppErrors.networkError(request.url?.absoluteString ?? "")
+        }
+        return output.data
     }
     
     static func handleCompletion(_ completion: Subscribers.Completion<Error>){

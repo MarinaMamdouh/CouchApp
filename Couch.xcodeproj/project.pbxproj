@@ -30,6 +30,7 @@
 		F84881FA28C7A6E10010AD19 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84881F928C7A6E10010AD19 /* APIRequest.swift */; };
 		F848820228C7D3800010AD19 /* MovieGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F848820128C7D3800010AD19 /* MovieGridCell.swift */; };
 		F848820428C7D84E0010AD19 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F848820328C7D84E0010AD19 /* Errors.swift */; };
+		F877FF9328CA344100993040 /* PaginationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F877FF9228CA344100993040 /* PaginationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +77,7 @@
 		F84881F928C7A6E10010AD19 /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
 		F848820128C7D3800010AD19 /* MovieGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieGridCell.swift; sourceTree = "<group>"; };
 		F848820328C7D84E0010AD19 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		F877FF9228CA344100993040 /* PaginationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,6 +229,7 @@
 				F84881F228C79E090010AD19 /* MoviesResponse.swift */,
 				F84881F928C7A6E10010AD19 /* APIRequest.swift */,
 				F848820328C7D84E0010AD19 /* Errors.swift */,
+				F877FF9228CA344100993040 /* PaginationManager.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -374,6 +377,7 @@
 				F82FB57328C640880017E307 /* CouchApp.swift in Sources */,
 				F82FB5AB28C685740017E307 /* FilterBarView.swift in Sources */,
 				F84881F128C7991C0010AD19 /* MoviesService.swift in Sources */,
+				F877FF9328CA344100993040 /* PaginationManager.swift in Sources */,
 				F84881F628C7A0320010AD19 /* NetworkManager.swift in Sources */,
 				F84881FA28C7A6E10010AD19 /* APIRequest.swift in Sources */,
 				F848820428C7D84E0010AD19 /* Errors.swift in Sources */,
