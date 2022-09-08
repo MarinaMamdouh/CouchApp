@@ -11,7 +11,7 @@ import SwiftUI
 struct MovieGridCell: View {
     @StateObject var viewModel: MovieGridCellViewModel
     @State var opacity = 1.0
-    private let animation = Animation.easeInOut(duration: 1)
+    private let loadingAnimation = Animation.easeInOut(duration: 1)
     
     init(movie: MovieModel){
         _viewModel = StateObject(wrappedValue:  MovieGridCellViewModel(movieModel: movie))
@@ -19,17 +19,13 @@ struct MovieGridCell: View {
     
     var body: some View {
         VStack {
-            
             if viewModel.isLoading{
                 movieTextBox
             }
-            
             movieImage
         }
         
     }
-    
-    
 }
 
 extension MovieGridCell{
@@ -46,7 +42,7 @@ extension MovieGridCell{
             .background(Color.theme.secondary)
             .cornerRadius(10)
             .opacity(opacity)
-            .animation(animation.repeat(while: viewModel.isLoading))
+            .animation(loadingAnimation.repeat(while: viewModel.isLoading))
             .onAppear {
                 withAnimation{
                     opacity = 0.5
@@ -73,12 +69,4 @@ struct MovieGridCell_Preview: PreviewProvider {
     }
 }
 
-extension Animation {
-    func `repeat`(while expression: Bool, autoreverses: Bool = true) -> Animation {
-        if expression {
-            return self.repeatForever(autoreverses: autoreverses)
-        } else {
-            return self
-        }
-    }
-}
+

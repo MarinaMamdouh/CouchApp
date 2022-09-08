@@ -34,6 +34,7 @@
 		F877FF9528CA3F9B00993040 /* DownloadImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F877FF9428CA3F9B00993040 /* DownloadImageService.swift */; };
 		F877FF9728CA48A500993040 /* ImageSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F877FF9628CA48A500993040 /* ImageSizes.swift */; };
 		F877FF9928CA4A7700993040 /* MovieGridCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F877FF9828CA4A7700993040 /* MovieGridCellViewModel.swift */; };
+		F877FF9C28CA589400993040 /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F877FF9B28CA589400993040 /* Animation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +85,7 @@
 		F877FF9428CA3F9B00993040 /* DownloadImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadImageService.swift; sourceTree = "<group>"; };
 		F877FF9628CA48A500993040 /* ImageSizes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSizes.swift; sourceTree = "<group>"; };
 		F877FF9828CA4A7700993040 /* MovieGridCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieGridCellViewModel.swift; sourceTree = "<group>"; };
+		F877FF9B28CA589400993040 /* Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 				F82FB5A328C671AB0017E307 /* Home */,
 				F82FB5A928C685490017E307 /* CustomViews */,
 				F84881F428C7A0070010AD19 /* Network */,
+				F877FF9A28CA587D00993040 /* Extensions */,
 				F82FB5B428C6A3140017E307 /* Constants */,
 				F82FB57228C640880017E307 /* CouchApp.swift */,
 				F82FB57628C640880017E307 /* Assets.xcassets */,
@@ -241,6 +244,14 @@
 				F877FF9228CA344100993040 /* PaginationManager.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		F877FF9A28CA587D00993040 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F877FF9B28CA589400993040 /* Animation.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -377,6 +388,7 @@
 				F84881EE28C798100010AD19 /* MovieModel.swift in Sources */,
 				F82FB5A728C6818D0017E307 /* Constants.swift in Sources */,
 				F84881F828C7A4750010AD19 /* APIs.swift in Sources */,
+				F877FF9C28CA589400993040 /* Animation.swift in Sources */,
 				F82FB57528C640880017E307 /* MoviesListView.swift in Sources */,
 				F84881F328C79E090010AD19 /* MoviesResponse.swift in Sources */,
 				F82FB5B228C693A00017E307 /* MovieDetailsView.swift in Sources */,
