@@ -63,20 +63,12 @@ extension MoviesListView{
 
 struct ContentView_Previews: PreviewProvider {
    static var contentList = (1...10).map { i in
-        MovieModel(id: i, originalTitle: "Movie \(i)", title: "Movie \(i)", posterPath: "")
+        MovieModel(id: i, originalTitle: "Movie \(i)", title: "Movie \(i)", posterPath: "/v28T5F1IygM8vXWZIycfNEm3xcL.jpg")
     }
     static var previews: some View {
         MoviesListView(movieList: .constant(contentList), loadingMoreData: .constant(true))
             .background(Color.theme.background)
             .previewLayout(.sizeThatFits)
-    }
-    
-    static func loadMore(){
-        let start = contentList.count
-        let newContentList = (start...start + 10).map { i in
-            MovieModel(id: i, originalTitle: "Movie \(i)", title: "Movie \(i)", posterPath: "")
-        }
-        contentList.append(contentsOf: newContentList)
     }
 }
 
