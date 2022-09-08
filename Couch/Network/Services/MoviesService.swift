@@ -12,6 +12,7 @@ import Combine
 //
 class MoviesService{
     @Published var moviesList:[MovieModel] = []
+    @Published var endOfMovies:Bool = false
     private var listType:ListType
     private var paginationManager: Pagination
     private var movieSubscription: AnyCancellable?
@@ -27,7 +28,10 @@ class MoviesService{
         getMovies()
     }
     func getMovies(){
-        guard let nextPage = paginationManager.getNextPage() else { return }
+        guard let nextPage = paginationManager.getNextPage() else {
+            endOfMovies = true
+            return
+        }
         let api = getAPI(page: nextPage)
         let request = api.asRequest()
         
