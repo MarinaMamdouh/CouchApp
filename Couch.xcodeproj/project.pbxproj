@@ -35,6 +35,7 @@
 		F877FF9728CA48A500993040 /* ImageSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F877FF9628CA48A500993040 /* ImageSizes.swift */; };
 		F877FF9928CA4A7700993040 /* MovieGridCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F877FF9828CA4A7700993040 /* MovieGridCellViewModel.swift */; };
 		F877FF9C28CA589400993040 /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F877FF9B28CA589400993040 /* Animation.swift */; };
+		F877FF9F28CA595B00993040 /* LocalFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F877FF9E28CA595B00993040 /* LocalFileManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +87,7 @@
 		F877FF9628CA48A500993040 /* ImageSizes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSizes.swift; sourceTree = "<group>"; };
 		F877FF9828CA4A7700993040 /* MovieGridCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieGridCellViewModel.swift; sourceTree = "<group>"; };
 		F877FF9B28CA589400993040 /* Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
+		F877FF9E28CA595B00993040 /* LocalFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFileManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +142,7 @@
 				F82FB5A328C671AB0017E307 /* Home */,
 				F82FB5A928C685490017E307 /* CustomViews */,
 				F84881F428C7A0070010AD19 /* Network */,
+				F877FF9D28CA594100993040 /* Local Data */,
 				F877FF9A28CA587D00993040 /* Extensions */,
 				F82FB5B428C6A3140017E307 /* Constants */,
 				F82FB57228C640880017E307 /* CouchApp.swift */,
@@ -252,6 +255,14 @@
 				F877FF9B28CA589400993040 /* Animation.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		F877FF9D28CA594100993040 /* Local Data */ = {
+			isa = PBXGroup;
+			children = (
+				F877FF9E28CA595B00993040 /* LocalFileManager.swift */,
+			);
+			path = "Local Data";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -407,6 +418,7 @@
 				F877FF9528CA3F9B00993040 /* DownloadImageService.swift in Sources */,
 				F82FB5B828C6A3490017E307 /* Texts.swift in Sources */,
 				F82FB5B628C6A33F0017E307 /* UIColors.swift in Sources */,
+				F877FF9F28CA595B00993040 /* LocalFileManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
