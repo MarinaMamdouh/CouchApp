@@ -22,14 +22,6 @@ class MoviesService{
         getMovies()
     }
     
-    func changeListType(_ listType: ListType){
-        moviesList = []
-        self.listType = listType
-        currentPage = 0
-        totalPages = -1
-        getMovies()
-    }
-    
     func getMovies(){
         let nextPage = currentPage + 1
         let api = getAPI(page: nextPage)

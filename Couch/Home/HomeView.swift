@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeView: View {
     @StateObject var viewModel = HomeViewModel()
     
+    
     let filterBarItems = [ Constants.Texts.mostPopularFilterBarItem : ListType.mostPopular , Constants.Texts.topRatedFilterBarItem : ListType.topRated ]
     
     var body: some View {
@@ -19,9 +20,7 @@ struct HomeView: View {
             VStack(alignment: .leading){
                 header
                 
-                FilterBarView(barItems: Array(filterBarItems.keys), itemIsSelected: { selectedItem in
-                    chooseList(selectedItem)
-                })
+                FilterBarView(selectedItem: $viewModel.selectedListTypeIndex, barItems: viewModel.listTypesNames)
                 
                 moviesListView
                 
@@ -72,7 +71,7 @@ extension HomeView{
         MoviesListView(movieList: $viewModel.topRatedMovies,
                        
                        loadMoreAction: {
-            viewModel.getMoreMovies()
+            //viewModel.getMoreMovies()
         })
     }
     
@@ -80,7 +79,7 @@ extension HomeView{
         MoviesListView(movieList: $viewModel.mostPopularMovies,
                        
                        loadMoreAction: {
-            viewModel.getMoreMovies()
+            //viewModel.getMoreMovies()
         })
     }
     

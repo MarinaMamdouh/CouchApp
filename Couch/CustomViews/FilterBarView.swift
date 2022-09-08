@@ -8,15 +8,13 @@
 import SwiftUI
 
 struct FilterBarView: View {
-    @State var selectedItem:Int = 0
+    @Binding var selectedItem:Int
     var barItems:[String]
-    var itemIsSelected:(Int) -> Void
     var body: some View {
         ScrollView(.horizontal){
             content
         }
         .padding()
-        
     }
 }
 
@@ -27,7 +25,6 @@ extension FilterBarView{
                 FilterBarItem(title: barItems[index], isSelected: (selectedItem == index))
                     .onTapGesture {
                         selectedItem = index
-                        itemIsSelected(index)
                     }
             }
         }
@@ -41,6 +38,7 @@ struct FilterBarItem: View {
         VStack{
             Text(title)
                 .foregroundColor(Color.theme.primary)
+                
                 .font(.title2)
             Rectangle()
                 .fill(isSelected ? Color.theme.primary : Color.theme.background)
@@ -52,9 +50,7 @@ struct FilterBarItem: View {
 struct FilterBarView_Previews: PreviewProvider {
     static let filterBarItems = ["Most Popular", "Top Rated", "New" ]
     static var previews: some View {
-        FilterBarView(barItems: filterBarItems, itemIsSelected: { selectedItem in
-            // inform the parentView
-        })
+        FilterBarView(selectedItem: .constant(0), barItems: ["Most Popular", "TopRated", "New"])
             .background(Color.theme.background)
             .previewLayout(.sizeThatFits)
         
