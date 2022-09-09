@@ -22,6 +22,16 @@ class DownloadImageService{
         getImage()
     }
     
+    init(imageSize:String){
+        self.imageSize  = imageSize
+        self.imagePath = ""
+    }
+    
+    func getImage(path: String){
+        self.imagePath = path
+        getImage()
+    }
+    
     private func getImage(){
         if !checkIfImageExists(){
             downloadImage()

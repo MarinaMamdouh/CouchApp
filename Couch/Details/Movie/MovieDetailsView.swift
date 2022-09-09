@@ -8,7 +8,12 @@
 import SwiftUI
 
 struct MovieDetailsView: View {
-    var movieDetails = MovieDetails.example
+    @StateObject var viewModel: MovieDetailsViewModel
+    let defaultImage = Image(systemName: "video.fill")
+    init(movie: MovieModel){
+        _viewModel = StateObject(wrappedValue:  MovieDetailsViewModel(movie: movie))
+    }
+    
     var body: some View {
         ZStack{
             Color.theme.background
@@ -36,34 +41,42 @@ struct MovieDetailsView: View {
 
 struct MovieDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        MovieDetailsView()
+        MovieDetailsView(movie: PreviewData.movieModelExample)
     }
 }
 
 extension MovieDetailsView{
     var movieImage: some View{
-        Image("DefaultBackdrop")
-            .resizable()
+        VStack{
+        if (viewModel.movieBackdrop != nil) {
+            Image(uiImage:  viewModel.movieBackdrop! )
+                .resizable()
+        }else{
+            Image(systemName: "video.fill")
+                .resizable()
+        }
+        }
+        .foregroundColor(Color.theme.primary)
             .aspectRatio(contentMode: .fit)
             .opacity(0.8)
             .shadow(color: .black, radius: 30, x: 0, y: 5)
     }
     
     var movieTitle: some View{
-        Text(movieDetails.originalTitle)
+        Text(viewModel.details.originalTitle)
             .padding(.top)
             .foregroundColor(Color.theme.primary)
             .font(.largeTitle)
     }
     
     var movieYear: some View{
-        Text("(\(movieDetails.releaseDate))")
+        Text("(\(viewModel.details.releaseYear))")
             .foregroundColor(Color.theme.primary)
             .font(.title)
     }
     
     var movieGenres: some View{
-        Text(movieDetails.genres)
+        Text(viewModel.details.genres)
             .foregroundColor(Color.theme.secondary)
             .padding(.all, 5)
             .font(.title2)
@@ -75,7 +88,7 @@ extension MovieDetailsView{
                 .font(.title2)
                 .foregroundColor(Color.theme.accent)
             
-            Text("\(movieDetails.rating)/ 10")
+            Text("\(viewModel.details.rating)/ 10")
                 .foregroundColor(Color.theme.primary)
                 .font(.system(size: 20, weight: .bold, design: .default))
             
@@ -91,7 +104,7 @@ extension MovieDetailsView{
                     .font(.title)
                 Spacer()
             }
-            Text(movieDetails.overView)
+            Text(viewModel.details.overView)
                 .padding([.leading, .trailing])
                 .foregroundColor(Color.theme.secondary)
                 .font(.body)
@@ -105,7 +118,7 @@ extension MovieDetailsView{
                 .padding([.bottom, .top], 10)
                 .foregroundColor(Color.theme.accent)
                 .font(.title3)
-            Text("\(movieDetails.runTime) mins")
+            Text("\(viewModel.details.runTime) mins")
                 .foregroundColor(Color.theme.secondary)
                 .font(.title3)
             Spacer()
@@ -113,18 +126,7 @@ extension MovieDetailsView{
     }
 }
 
-struct MovieDetails{
-    
-    var originalTitle: String
-    var backdropImage: String
-    var overView: String
-    var rating: String
-    var releaseDate: String
-    var genres: String
-    var runTime: Int
-}
-
 
 extension MovieDetails{
-    static let example:MovieDetails = MovieDetails(originalTitle: "Thor: Love and Thunder", backdropImage: "", overView: "After his retirement is interrupted by Gorr the God Butcher, a galactic killer who seeks the extinction of the gods, Thor Odinson enlists the help of King Valkyrie, Korg, and ex-girlfriend Jane Foster, who now inexplicably wields Mjolnir as the Relatively Mighty Girl Thor. Together they embark upon a harrowing cosmic adventure to uncover the mystery of the God Butcher’s vengeance and stop him before it’s too late.", rating: "6.7", releaseDate: "2022", genres: "Action, Adventure, Fantasy", runTime: 119)
+    static let example:MovieDetails = MovieDetails(originalTitle: "Thor: Love and Thunder", backdropImage: "", overView: "After his retirement is interrupted by Gorr the God Butcher, a galactic killer who seeks the extinction of the gods, Thor Odinson enlists the help of King Valkyrie, Korg, and ex-girlfriend Jane Foster, who now inexplicably wields Mjolnir as the Relatively Mighty Girl Thor. Together they embark upon a harrowing cosmic adventure to uncover the mystery of the God Butcher’s vengeance and stop him before it’s too late.", rating: "6.7",  releaseYear:"2022", releaseDate: "2022-07-06", genres: "Action, Adventure, Fantasy", runTime: 119)
 }

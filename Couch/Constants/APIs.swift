@@ -11,6 +11,8 @@ extension Constants{
     struct APIs{
         static let apiKeyParameter = URLQueryItem(name: "api_key", value: "57ee69215969ddcd3cf245e6b151ec9b")
         
+        static let baseMoviesEndPoint = "https://api.themoviedb.org/3/movie"
+        
         static let topRatedMoviesEndPoint = "https://api.themoviedb.org/3/movie/top_rated"
         
         static let mostPopularMoviesEndPoint = "https://api.themoviedb.org/3/movie/popular"
@@ -24,6 +26,6 @@ extension Constants{
         static let pageParameterKey = "page"
         
         static let posterImageSize = "w185"
-        static let backdropImageSize = "w300"
+        static let backdropImageSize = "w780"
     }
 }

@@ -10,7 +10,7 @@ import SwiftUI
 struct MoviesListView: View {
     @Binding var movieList: [MovieModel]
     @Binding var loadingMoreData: Bool
-    @State var selectedMovieIndex:Int?
+    @State var selectedMovieIndex:Int = 0
     @State var showDetails:Bool = false
     
     private var lastMovieIndex: Int{
@@ -41,7 +41,7 @@ extension MoviesListView{
                 cellView(index)
             }
             .sheet(isPresented: $showDetails) {
-                MovieDetailsView()
+                MovieDetailsView(movie: movieList[selectedMovieIndex])
             }
             
             

@@ -14,5 +14,6 @@ extension Constants{
         static let mostPopularFilterBarItem = "Most Popular"
         static let plotTitle = "The Plot"
         static let duration = "Duration"
+        static let unknown = "Unknown"
     }
 }
