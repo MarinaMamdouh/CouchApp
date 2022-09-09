@@ -27,7 +27,7 @@ class MovieGridCellViewModel: ObservableObject{
     private func addSubscribers(){
         downloadImageService.$image
             .sink { [weak self] recievedImage in
-                print("Image downloaded")
+
                 self?.image = recievedImage
 
             }
