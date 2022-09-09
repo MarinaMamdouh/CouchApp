@@ -21,4 +21,3 @@ struct MovieModel: Codable {
         case title
     }
 }
-

@@ -14,17 +14,19 @@ struct HomeView: View {
         ZStack {
             Color.theme.background
                 .edgesIgnoringSafeArea(.all)
+            
             VStack(alignment: .leading){
                 header
                 
-                FilterBarView(selectedItem: $viewModel.selectedListTypeIndex, barItems: viewModel.listTypesNames)
+                sortingBar
                 
-                moviesListView
+                HomeMovieListView()
+                
+                Spacer()
                 
             }
-            
         }
-        
+        .environmentObject(viewModel)
     }
 }
 
@@ -36,26 +38,9 @@ extension HomeView{
             .font(.largeTitle.bold())
     }
     
-    var moviesListView: some View{
-        ZStack{
-            switch viewModel.currentSorting{
-            case .topRated:
-                topRatedMoviesList
-            case .mostPopular:
-                mostPopularMoviesList
-            }
-        }
+    var sortingBar: some View{
+        FilterBarView(selectedItem: $viewModel.selectedListTypeIndex, barItems: viewModel.listTypesNames)
     }
-    
-    var topRatedMoviesList: some View{
-        MoviesListView(movieList: $viewModel.topRatedMovies, loadingMoreData: $viewModel.isLoading)
-    }
-    
-    var mostPopularMoviesList: some View{
-        MoviesListView(movieList: $viewModel.mostPopularMovies, loadingMoreData: $viewModel.isLoading)
-    }
-    
-    
 }
 
 

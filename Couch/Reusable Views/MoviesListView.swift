@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct MoviesListView: View {
-
     @Binding var movieList: [MovieModel]
     @Binding var loadingMoreData: Bool
+    @State var selectedMovieIndex:Int?
+    @State var showDetails:Bool = false
     
     private var lastMovieIndex: Int{
         return movieList.count - 1
@@ -19,6 +20,7 @@ struct MoviesListView: View {
     let columnsLayout = [
         GridItem(.adaptive(minimum: 150, maximum: Constants.ImageSizes.maxPosterSize.width), spacing: 20)
     ]
+    
     var body: some View {
         ScrollView() {
             gridView
@@ -36,20 +38,27 @@ extension MoviesListView{
     var gridView: some View{
         LazyVGrid(columns: columnsLayout, spacing: 20) {
             ForEach(movieList.indices, id: \.self) { index in
-                
-                MovieGridCell(movie: movieList[index])
-                   
-                    .onAppear{
-                        if index == lastMovieIndex {
-                            loadingMoreData = true
-                        }
-                    }
-                    
+                cellView(index)
+            }
+            .sheet(isPresented: $showDetails) {
+                MovieDetailsView()
             }
             
             
         }
         .padding()
+    }
+    
+    func cellView(_ index:Int)-> some View{
+        MovieGridCell(movie: movieList[index])
+           
+            .onAppear{
+                if index == lastMovieIndex {
+                    loadingMoreData = true
+                }
+            }
+            .onTapGesture
+            { onMovieSelected(of: index) }
     }
     
     var progressView: some View{
@@ -59,14 +68,17 @@ extension MoviesListView{
             
     }
     
+    func onMovieSelected(of index: Int){
+        selectedMovieIndex = index
+        showDetails.toggle()
+    }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
-   static var contentList = (1...10).map { i in
-        MovieModel(id: i, originalTitle: "Movie \(i)", title: "Movie \(i)", posterPath: "/v28T5F1IygM8vXWZIycfNEm3xcL.jpg")
-    }
+
     static var previews: some View {
-        MoviesListView(movieList: .constant(contentList), loadingMoreData: .constant(true))
+        MoviesListView(movieList: .constant(PreviewData.moviesListExample), loadingMoreData: .constant(true))
             .background(Color.theme.background)
             .previewLayout(.sizeThatFits)
     }

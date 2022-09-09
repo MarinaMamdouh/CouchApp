@@ -26,28 +26,21 @@ struct MovieGridCell: View {
         }
         
     }
+    
 }
 
 extension MovieGridCell{
     
     var movieTextBox: some View{
         Text(viewModel.movie.title)
+            .posterImageSize()
+            .loadingStyle()
             .font(.title2)
             .multilineTextAlignment(.center)
-            .foregroundColor(Color.theme.primary)
-            .padding()
-            .frame(maxWidth: Constants.ImageSizes.maxPosterSize.width)
-            .frame(maxHeight: Constants.ImageSizes.maxPosterSize.height)
-            .aspectRatio(Constants.ImageSizes.posterAspectRatio, contentMode: .fill)
-            .background(Color.theme.secondary)
             .cornerRadius(10)
+            .padding()
             .opacity(opacity)
-            .animation(loadingAnimation.repeat(while: viewModel.isLoading))
-            .onAppear {
-                withAnimation{
-                    opacity = 0.5
-                }
-            }
+            .onAppear(perform: startLoadingAnimation)
     }
     
     var movieImage: some View{
@@ -60,11 +53,19 @@ extension MovieGridCell{
             }
         }
     }
+    
+    func startLoadingAnimation(){
+        withAnimation(
+            Animation.easeInOut(duration:1).repeat(while:viewModel.isLoading))
+        {
+            opacity = 0.5
+        }
+    }
 }
 
 struct MovieGridCell_Preview: PreviewProvider {
     static var previews: some View {
-        MovieGridCell(movie: MovieModel(id: 1, originalTitle: "MyMovie", title: "My Movie: The part Two", posterPath: "/mIrShVoYwmN2fBsEsNcxvCPVAs5.jpg"))
+        MovieGridCell(movie: PreviewData.movieModelExample)
             .previewLayout(.sizeThatFits)
     }
 }
