@@ -11,22 +11,29 @@ import UIKit
 
 class MovieDetailsViewModel: ObservableObject{
     @Published var detailsModel: MovieDetailsModel?
+    @Published var movie: MovieModel?
     @Published var movieBackdrop: UIImage?
-    @Published var details = MovieDetails()
-    var selectedMovie:MovieModel
-    private let movieDetailsService: MovieDetailsService
+    @Published var details: MovieDetails?
+    @Published var imageIsLoading:Bool = true
+    private var movieDetailsService: MovieDetailsService?
     private let downloadImageService: DownloadImageService
     private var cancellables = Set<AnyCancellable>()
     
+    init(movieDetails: MovieDetailsModel){
+        detailsModel = movieDetails
+        downloadImageService = DownloadImageService(imageSize: Constants.APIs.backdropImageSize)
+        addSubscribers()
+    }
+    
     init(movie: MovieModel){
-        self.selectedMovie = movie
-        movieDetailsService = MovieDetailsService(movie: selectedMovie)
+        self.movie = movie
+        movieDetailsService = MovieDetailsService(movie: movie)
         downloadImageService = DownloadImageService(imageSize: Constants.APIs.backdropImageSize)
         addSubscribers()
     }
     
     private func addSubscribers(){
-        movieDetailsService.$movieDetails
+        movieDetailsService?.$movieDetails
             .sink { [weak self] details in
                 self?.detailsModel = details
             }
@@ -36,7 +43,7 @@ class MovieDetailsViewModel: ObservableObject{
             .sink { [weak self] recievedDetailsModel in
                 guard let recievedDetailsModel = recievedDetailsModel else { return }
                 self?.details =  MovieDetails.convertModel(model: recievedDetailsModel)
-                guard let path = self?.details.backdropImage else { return }
+                guard let path = self?.details?.backdropImage else { return }
                 self?.beginDownloadImage(backdropPath: path)
             }
             .store(in: &cancellables)
@@ -47,6 +54,7 @@ class MovieDetailsViewModel: ObservableObject{
         downloadImageService.$image
             .sink { [weak self] recievedImage in
                 self?.movieBackdrop = recievedImage
+                self?.imageIsLoading = false
             }
             .store(in: &cancellables)
     }
@@ -68,13 +76,14 @@ struct MovieDetails{
         let rating = String(format: "%.1f", model.voteAverage ?? 0.0)
         var releaseYear = Constants.Texts.unknown
         if let releaseDate = model.releaseDate?.toDate{
-            releaseYear = "\(releaseDate.get(.year))"
+            releaseYear = "(\(releaseDate.get(.year)))"
         }
         var genresString = ""
         if let genresArray = model.genres{
             for genre in genresArray{
-                genresString += "\(genre.name),"
+                genresString += "\(genre.name), "
             }
+            genresString.removeLast()
             genresString.removeLast()
         }
         let releaseDateString = model.releaseDate ?? Constants.Texts.unknown

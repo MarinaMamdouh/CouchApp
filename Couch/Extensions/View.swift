@@ -15,6 +15,14 @@ extension View{
             .frame(maxHeight: Constants.ImageSizes.maxPosterSize.height)
             .aspectRatio(Constants.ImageSizes.posterAspectRatio, contentMode: .fill)
     }
+    
+    func backDropImageSize() -> some View{
+        //500 × 281
+        self
+            .frame(maxWidth: Constants.ImageSizes.maxBackdropSize.width)
+            .frame(maxHeight: Constants.ImageSizes.maxPosterSize.height)
+            .aspectRatio(Constants.ImageSizes.backdropAspectRatio, contentMode: .fill)
+    }
     // sets the layout of view to match our app loading style
     // has secondary color background, if has text it will be the primary color
     func loadingStyle()-> some View{

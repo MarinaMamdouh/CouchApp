@@ -38,7 +38,7 @@
 		F877FF9928CA4A7700993040 /* MovieGridCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F877FF9828CA4A7700993040 /* MovieGridCellViewModel.swift */; };
 		F877FF9C28CA589400993040 /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F877FF9B28CA589400993040 /* Animation.swift */; };
 		F877FF9F28CA595B00993040 /* ImageFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F877FF9E28CA595B00993040 /* ImageFileManager.swift */; };
-		F8EFA7DE28CB8E060082842C /* MovieListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EFA7DD28CB8E060082842C /* MovieListViewModel.swift */; };
+		F8EFA7DE28CB8E060082842C /* MoviesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EFA7DD28CB8E060082842C /* MoviesListViewModel.swift */; };
 		F8EFA7E028CB95E70082842C /* HomeMovieListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EFA7DF28CB95E70082842C /* HomeMovieListView.swift */; };
 		F8EFA7E328CB99C20082842C /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EFA7E228CB99C20082842C /* View.swift */; };
 		F8EFA7E528CB9D770082842C /* PreviewExampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EFA7E428CB9D770082842C /* PreviewExampleData.swift */; };
@@ -101,7 +101,7 @@
 		F877FF9828CA4A7700993040 /* MovieGridCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieGridCellViewModel.swift; sourceTree = "<group>"; };
 		F877FF9B28CA589400993040 /* Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
 		F877FF9E28CA595B00993040 /* ImageFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFileManager.swift; sourceTree = "<group>"; };
-		F8EFA7DD28CB8E060082842C /* MovieListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewModel.swift; sourceTree = "<group>"; };
+		F8EFA7DD28CB8E060082842C /* MoviesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesListViewModel.swift; sourceTree = "<group>"; };
 		F8EFA7DF28CB95E70082842C /* HomeMovieListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMovieListView.swift; sourceTree = "<group>"; };
 		F8EFA7E228CB99C20082842C /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		F8EFA7E428CB9D770082842C /* PreviewExampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewExampleData.swift; sourceTree = "<group>"; };
@@ -214,9 +214,8 @@
 		F82FB5A928C685490017E307 /* Reusable Views */ = {
 			isa = PBXGroup;
 			children = (
+				F8538F3928CD146000BB4C4A /* MoviesList */,
 				F877FFA028CA62F900993040 /* MovieGridCell */,
-				F82FB57428C640880017E307 /* MoviesListView.swift */,
-				F8EFA7DD28CB8E060082842C /* MovieListViewModel.swift */,
 				F82FB5AA28C685740017E307 /* FilterBarView.swift */,
 			);
 			path = "Reusable Views";
@@ -275,6 +274,15 @@
 				F877FF9228CA344100993040 /* PaginationManager.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		F8538F3928CD146000BB4C4A /* MoviesList */ = {
+			isa = PBXGroup;
+			children = (
+				F82FB57428C640880017E307 /* MoviesListView.swift */,
+				F8EFA7DD28CB8E060082842C /* MoviesListViewModel.swift */,
+			);
+			path = MoviesList;
 			sourceTree = "<group>";
 		};
 		F877FF9A28CA587D00993040 /* Extensions */ = {
@@ -476,7 +484,7 @@
 				F84881F128C7991C0010AD19 /* MoviesService.swift in Sources */,
 				F877FF9928CA4A7700993040 /* MovieGridCellViewModel.swift in Sources */,
 				F877FF9328CA344100993040 /* PaginationManager.swift in Sources */,
-				F8EFA7DE28CB8E060082842C /* MovieListViewModel.swift in Sources */,
+				F8EFA7DE28CB8E060082842C /* MoviesListViewModel.swift in Sources */,
 				F84881F628C7A0320010AD19 /* NetworkManager.swift in Sources */,
 				F8EFA7E328CB99C20082842C /* View.swift in Sources */,
 				F877FF9728CA48A500993040 /* ImageSizes.swift in Sources */,
