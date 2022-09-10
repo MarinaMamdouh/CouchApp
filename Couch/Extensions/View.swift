@@ -30,4 +30,9 @@ extension View{
         .foregroundColor(Color.theme.primary)
         .background(Color.theme.secondary)
     }
+    
+    func loadNavigationBarStyle(){
+        UINavigationBar.appearance().barTintColor = UIColor(Color.theme.background)
+        UINavigationBar.appearance().tintColor = UIColor(Color.theme.primary)
+    }
 }

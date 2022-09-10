@@ -13,10 +13,12 @@ extension Color{
 }
 
 struct ColorTheme{
-     let background = Color("BackgroundColor")
-     let primary = Color("PrimaryColor")
-     let secondary = Color("SecondaryColor")
-     let accent = Color("AccentColor")
+    let background = Color("BackgroundColor")
+    let primary = Color("PrimaryColor")
+    let secondary = Color("SecondaryColor")
+    let accent = Color("AccentColor")
+    let red = Color("Red")
+    let shadow = Color.black
 }
 //extension Constants{
 //    struct UIColors{

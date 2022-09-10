@@ -10,5 +10,8 @@ import Foundation
 extension Constants{
     struct Symbols{
         static let starFillSymbol = "star.fill"
+        static let heartSymbol = "heart"
+        static let heartFillSymbol = "heart.fill"
+        static let homeSymbol = "house"
     }
 }

@@ -15,10 +15,12 @@ struct MovieDetailsView: View {
     
     init(movie: MovieModel){
         _viewModel = StateObject(wrappedValue:  MovieDetailsViewModel(movie: movie))
+        self.loadNavigationBarStyle()
     }
     
     init(details: MovieDetailsModel){
         _viewModel =  StateObject(wrappedValue: MovieDetailsViewModel(movieDetails: details))
+        self.loadNavigationBarStyle()
     }
     
     var body: some View {
@@ -32,8 +34,10 @@ struct MovieDetailsView: View {
                     movieDetails
                     
                 }
+                .padding(.bottom)
             }
         }
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
@@ -44,11 +48,20 @@ extension MovieDetailsView{
         VStack{
             
             if let image = viewModel.movieBackdrop {
-                Image(uiImage:  image)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .cornerRadius(10)
+                
+                ZStack(alignment: .topTrailing) {
+                    Image(uiImage:  image)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .cornerRadius(10)
+                        .opacity(0.8)
                     .shadow(color: .black, radius: 30, x: 0, y: 5)
+                    
+                    FavoriteIcon(isOn: $viewModel.isFavorite)
+                        .onTapGesture {
+                            viewModel.isFavorite.toggle()
+                        }
+                }
             }else{
                 loadingImageBox
             }
@@ -80,7 +93,8 @@ extension MovieDetailsView{
     
     var movieTitle: some View{
         Text(viewModel.details?.originalTitle ?? viewModel.movie?.title ?? "")
-            .padding(.top)
+            .padding([.top,.leading, .trailing])
+            .multilineTextAlignment(.center)
             .foregroundColor(Color.theme.primary)
             .font(.largeTitle)
     }
@@ -94,7 +108,8 @@ extension MovieDetailsView{
     var movieGenres: some View{
         Text(viewModel.details?.genres ?? "")
             .foregroundColor(Color.theme.secondary)
-            .padding(.all, 5)
+            .padding(.vertical, 5)
+            .padding(.horizontal)
             .font(.title2)
             .multilineTextAlignment(.center)
     }
@@ -149,6 +164,7 @@ extension MovieDetailsView{
             opacity = 0.3
         }
     }
+
 }
 
 struct MovieDetailsView_Previews: PreviewProvider {

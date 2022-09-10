@@ -15,5 +15,7 @@ extension Constants{
         static let plotTitle = "The Plot"
         static let duration = "Duration"
         static let unknown = "Unknown"
+        static let home = "Home"
+        static let favorites = "Favorites"
     }
 }

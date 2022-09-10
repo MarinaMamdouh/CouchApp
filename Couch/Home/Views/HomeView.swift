@@ -11,22 +11,23 @@ struct HomeView: View {
     @StateObject var viewModel = HomeViewModel()
     
     var body: some View {
-        ZStack {
-            Color.theme.background
-                .edgesIgnoringSafeArea(.all)
-            
-            VStack(alignment: .leading){
-                header
+        NavigationView {
+            ZStack {
+                Color.theme.background
+                    .edgesIgnoringSafeArea(.all)
                 
-                sortingBar
-                
-                HomeMovieListView()
-                
-                Spacer()
-                
+                VStack(alignment: .leading){
+                    header
+                    
+                    sortingBar
+                    
+                    HomeMovieListView()
+                }
+                .navigationBarHidden(true)
+                .navigationTitle(Constants.Texts.moviesTitle)
             }
+            .environmentObject(viewModel)
         }
-        .environmentObject(viewModel)
         
     }
 }
@@ -37,6 +38,7 @@ extension HomeView{
             .padding()
             .foregroundColor(Color.theme.primary)
             .font(.largeTitle.bold())
+        
     }
     
     var sortingBar: some View{

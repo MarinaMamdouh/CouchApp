@@ -15,6 +15,7 @@ class MovieDetailsViewModel: ObservableObject{
     @Published var movieBackdrop: UIImage?
     @Published var details: MovieDetails?
     @Published var imageIsLoading:Bool = true
+    @Published var isFavorite:Bool = false
     private var movieDetailsService: MovieDetailsService?
     private let downloadImageService: DownloadImageService
     private var cancellables = Set<AnyCancellable>()

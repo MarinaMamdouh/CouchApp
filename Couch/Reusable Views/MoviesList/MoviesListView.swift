@@ -45,13 +45,25 @@ extension MoviesListView{
     var gridView: some View{
         LazyVGrid(columns: columnsLayout, spacing: 20) {
             ForEach(movieList.indices, id: \.self) { index in
-                cellView(index)
-            }
-            .sheet(isPresented: $viewModel.showMovieDetails) {
-                if let movie = viewModel.selectedMovie {
-                    MovieDetailsView(movie: movie)
+                NavigationLink(isActive: $viewModel.showMovieDetails) {
+                    if let movie = viewModel.selectedMovie {
+                            MovieDetailsView(movie: movie)
+                    }
+                } label: {
+                    cellView(index)
                 }
+
+
+                
             }
+            
+//            .sheet(isPresented: $viewModel.showMovieDetails) {
+//                if let movie = viewModel.selectedMovie {
+//                    MovieDetailsView(movie: movie)
+//                }
+//                
+//            }
+            
             
             
         }
