@@ -21,13 +21,18 @@ struct HomeMovieListView: View {
     }
     
     var topRatedMoviesList: some View{
-        MoviesListView(movieList: $viewModel.topRatedMovies, loadingMoreData: $viewModel.isLoading)
+        MoviesListView(list: $viewModel.topRatedMovies, onScrollEnded: {
+            viewModel.isLoading = true
+        })
+            
         
     }
     
     var mostPopularMoviesList: some View{
-        MoviesListView(movieList: $viewModel.mostPopularMovies, loadingMoreData: $viewModel.isLoading)
-            
+        MoviesListView(list: $viewModel.mostPopularMovies,
+            onScrollEnded: {
+                viewModel.isLoading = true
+            })  
     }
 }
 
