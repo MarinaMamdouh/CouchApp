@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct TabBarView: View {
+    init(){
+        //UITabBar.appearance().backgroundColor = UIColor(Color.theme.background)
+    }
     var body: some View {
-        ZStack {
-            Color.theme.background.ignoresSafeArea()
+//        ZStack {
+//            Color.theme.background.ignoresSafeArea()
             TabView{
                 HomeView()
                     .tabItem {
@@ -29,10 +32,10 @@ struct TabBarView: View {
                         }
                     }
             }
-            .onAppear {
-                UITabBar.appearance().barTintColor = UIColor(Color.theme.accent)
-                UITabBar.appearance().backgroundColor = UIColor(Color.theme.background)
-            }
+//        }
+        .onAppear {
+           UITabBar.appearance().backgroundColor = UIColor(Color.theme.background)
+            UITabBar.appearance().barTintColor = UIColor(Color.theme.background)
         }
     }
     
@@ -48,5 +51,6 @@ struct TabBarView: View {
 struct TabBarView_Previews: PreviewProvider {
     static var previews: some View {
         TabBarView()
+            .preferredColorScheme(.light)
     }
 }
