@@ -16,11 +16,8 @@ struct FavoritesView: View {
             ZStack {
                 Color.theme.background
                     .ignoresSafeArea()
-                VStack{
-                    //header
-                    
-                    content
-                }
+                
+                content
             }
             .navigationTitle(Constants.Texts.favorites)
     }
@@ -41,10 +38,11 @@ struct FavoritesView: View {
                 emptyFav
                 Spacer()
             }else{
-                MoviesListView(list: $viewModel.favMovies, enableDetails: true)
+                MoviesListView(list: $viewModel.favMovies, enableDetails: false)
             }
            
         }
+        .padding()
     }
     
     var emptyFav: some View{

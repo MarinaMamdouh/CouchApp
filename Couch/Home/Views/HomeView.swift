@@ -21,6 +21,7 @@ struct HomeView: View {
                     sortingBar
                     
                     HomeMovieListView()
+                        .padding()
                 }
                 .navigationBarHidden(true)
             }
