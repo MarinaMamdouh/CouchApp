@@ -19,6 +19,8 @@ class HomeViewModel: ObservableObject{
     @Published var currentSorting:ListType
     // state that show us if UI needs to load data or not
     @Published var isLoading:Bool = false
+    
+    @Published var noData:Bool = true
     //////////////Private properties////////////////
     //////////////////////////////////////////////
     
@@ -57,6 +59,9 @@ class HomeViewModel: ObservableObject{
             .sink { [weak self] (recievedMovies) in
                 self?.topRatedMovies = recievedMovies
                 self?.isLoading = false
+                if !recievedMovies.isEmpty{
+                    self?.noData = false
+                }
             }
             .store(in: &cancellables)
         
@@ -65,6 +70,9 @@ class HomeViewModel: ObservableObject{
             .sink {[weak self] (recievedMovies) in
                 self?.mostPopularMovies = recievedMovies
                 self?.isLoading = false
+                if !recievedMovies.isEmpty{
+                    self?.noData = false
+                }
             }
             .store(in: &cancellables)
             

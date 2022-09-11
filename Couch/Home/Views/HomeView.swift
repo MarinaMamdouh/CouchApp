@@ -21,7 +21,7 @@ struct HomeView: View {
                     sortingBar
                     
                     HomeMovieListView()
-                        .padding()
+                        .padding(.horizontal)
                 }
                 .navigationBarHidden(true)
             }
@@ -38,7 +38,9 @@ extension HomeView{
                 .padding()
                 .foregroundColor(Color.theme.primary)
             .font(.largeTitle.bold())
+            
             Spacer()
+            
             NavigationLink {
                 FavoritesView()
             } label: {
@@ -50,6 +52,7 @@ extension HomeView{
         
     }
     
+
     var sortingBar: some View{
         FilterBarView(selectedItem: $viewModel.selectedListTypeIndex, barItems: viewModel.listTypesNames)
     }
