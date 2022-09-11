@@ -15,10 +15,3 @@ struct CouchApp: App {
         }
     }
 }
-
-//"Movies" = "Movies";
-//"TopRated" = "Top Rated";
-//"MostPopular" = "Most Popular";
-//"ThePlot" = "The Plot";
-//"Duration" = "Duration";
-//"minutes" = "minutes";

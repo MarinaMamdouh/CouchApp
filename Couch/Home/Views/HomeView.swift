@@ -9,7 +9,6 @@ import SwiftUI
 
 struct HomeView: View {
     @StateObject var viewModel = HomeViewModel()
-    
     var body: some View {
         NavigationView {
             ZStack {
@@ -24,7 +23,7 @@ struct HomeView: View {
                     HomeMovieListView()
                 }
                 .navigationBarHidden(true)
-                .navigationTitle(Constants.Texts.moviesTitle)
+                //.navigationTitle(Constants.Texts.moviesTitle)
             }
             .environmentObject(viewModel)
         }

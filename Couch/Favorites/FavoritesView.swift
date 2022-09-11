@@ -20,7 +20,9 @@ struct FavoritesView: View {
                     content
                 }
             }
-            .navigationTitle(Constants.Texts.favorites)
+            .onAppear(perform: {
+                viewModel.isShown = true
+            })
             .navigationBarHidden(true)
         }
     }
@@ -41,7 +43,7 @@ struct FavoritesView: View {
                 emptyFav
                 Spacer()
             }else{
-                MoviesListView(list: $viewModel.favMovies)
+                MoviesListView(list: $viewModel.favMovies, enableDetails: false)
             }
            
         }
@@ -54,7 +56,7 @@ struct FavoritesView: View {
             }
             .background(Color.theme.background)
             .frame(height: 100)
-            Text("No Favorite Movies Yet.")
+            Text(Constants.Texts.emptyFavorites)
                 .font(.title)
                 .foregroundColor(Color.theme.secondary)
                 .padding()

@@ -17,5 +17,6 @@ extension Constants{
         static let unknown = "Unknown"
         static let home = "Home"
         static let favorites = "Favorites"
+        static let emptyFavorites = "No Favorite Movies Yet."
     }
 }

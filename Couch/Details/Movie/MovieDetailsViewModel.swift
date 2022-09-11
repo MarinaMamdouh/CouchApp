@@ -16,8 +16,10 @@ class MovieDetailsViewModel: ObservableObject{
     @Published var details: MovieDetails?
     @Published var imageIsLoading:Bool = true
     @Published var isFavorite:Bool = false
+    @Published var isTapped: Bool = false
     private var movieDetailsService: MovieDetailsService?
     private let downloadImageService: DownloadImageService
+    private let favoritesDataManager = FavoriteDataManager()
     private var cancellables = Set<AnyCancellable>()
     
     init(movieDetails: MovieDetailsModel){
@@ -30,6 +32,7 @@ class MovieDetailsViewModel: ObservableObject{
         self.movie = movie
         movieDetailsService = MovieDetailsService(movie: movie)
         downloadImageService = DownloadImageService(imageSize: Constants.APIs.backdropImageSize)
+        favoritesDataManager.getFavoriteMovie(of: movie.id)
         addSubscribers()
     }
     
@@ -46,6 +49,27 @@ class MovieDetailsViewModel: ObservableObject{
                 self?.details =  MovieDetails.convertModel(model: recievedDetailsModel)
                 guard let path = self?.details?.backdropImage else { return }
                 self?.beginDownloadImage(backdropPath: path)
+            }
+            .store(in: &cancellables)
+        
+        favoritesDataManager.$requestedFavoriteMovie
+            .sink { [weak self] entity in
+                guard let self = self, let _ = entity else { return }
+                self.isFavorite = true
+            }
+            .store(in: &cancellables)
+        
+        $isFavorite
+            .sink { [weak self] putInFavorite in
+                guard let self = self , let movie = self.movie
+                else {return}
+                
+                let entity = FavoriteMovieEntity.convert(model: movie)
+                if putInFavorite{
+                    self.favoritesDataManager.save(entity)
+                }else{
+                    self.favoritesDataManager.delete(entity)
+                }
             }
             .store(in: &cancellables)
     }

@@ -17,20 +17,23 @@ class MoviesListViewModel: ObservableObject{
     @Published var onScrollEnded: ()->() = {}
     @Published var scrollEnded:Bool = false
     
-    var numberOfMovies:Int = 0
+    @Published var numberOfMovies:Int = 0
+    @Published var enableDetails:Bool = false
     private(set) var pagination: Bool = false
     private var cancellables = Set<AnyCancellable>()
     private var lastMovieIndex: Int{
         return numberOfMovies - 1
     }
     
-    init(onSelectedAction: @escaping ()->()){
+    init(enableDetails: Bool,onSelectedAction: @escaping ()->()){
+        self.enableDetails = enableDetails
         self.onScrollEnded = onSelectedAction
         self.pagination = true
         addSubscribers()
     }
     
-    init(){
+    init(enableDetails: Bool){
+        self.enableDetails = enableDetails
         addSubscribers()
     }
     
@@ -48,7 +51,7 @@ class MoviesListViewModel: ObservableObject{
         $selectedMovie
             .sink { [weak self] selectedMovie in
                 guard let self = self  , let _ = selectedMovie else {return}
-                self.showMovieDetails = true
+                self.showMovieDetails = self.enableDetails
             }
             .store(in: &cancellables)
         

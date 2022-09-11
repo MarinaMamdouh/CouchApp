@@ -12,15 +12,15 @@ struct MoviesListView: View {
     @Binding var movieList: [MovieModel]
     @StateObject var viewModel:MoviesListViewModel
     
-    init(list: Binding<[MovieModel]>){
+    init(list: Binding<[MovieModel]>, enableDetails: Bool){
         _movieList = list
-        _viewModel =  StateObject(wrappedValue: MoviesListViewModel())
+        _viewModel =  StateObject(wrappedValue: MoviesListViewModel(enableDetails: enableDetails))
         
     }
     
-    init(list: Binding<[MovieModel]>, onScrollEnded: @escaping ()->()){
+    init(list: Binding<[MovieModel]> , enableDetails: Bool, onScrollEnded: @escaping ()->()){
         _movieList = list
-        _viewModel =  StateObject(wrappedValue: MoviesListViewModel(onSelectedAction: onScrollEnded))
+        _viewModel =  StateObject(wrappedValue: MoviesListViewModel(enableDetails: enableDetails, onSelectedAction: onScrollEnded))
     }
     
     private let columnsLayout = [
@@ -52,22 +52,9 @@ extension MoviesListView{
                 } label: {
                     cellView(index)
                 }
-
-
-                
             }
-            
-//            .sheet(isPresented: $viewModel.showMovieDetails) {
-//                if let movie = viewModel.selectedMovie {
-//                    MovieDetailsView(movie: movie)
-//                }
-//                
-//            }
-            
-            
-            
         }
-        .padding()
+        
     }
     
     
@@ -103,12 +90,12 @@ struct ContentView_Previews: PreviewProvider {
         Group{
             
             // without Pagination
-            MoviesListView(list: .constant(PreviewData.moviesListExample))
+            MoviesListView(list: .constant(PreviewData.moviesListExample), enableDetails: false)
                 .background(Color.theme.background)
                 .previewLayout(.sizeThatFits)
             
             // with Pagination (we expect to see loading indicator at the end of scrolling)
-            MoviesListView(list: .constant(PreviewData.moviesListExample), onScrollEnded: {})
+            MoviesListView(list: .constant(PreviewData.moviesListExample), enableDetails: false, onScrollEnded: {})
                 .background(Color.theme.background)
                 .previewLayout(.sizeThatFits)
         }
