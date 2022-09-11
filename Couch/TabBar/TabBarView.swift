@@ -12,8 +12,6 @@ struct TabBarView: View {
         //UITabBar.appearance().backgroundColor = UIColor(Color.theme.background)
     }
     var body: some View {
-//        ZStack {
-//            Color.theme.background.ignoresSafeArea()
             TabView{
                 HomeView()
                     .tabItem {
@@ -32,7 +30,6 @@ struct TabBarView: View {
                         }
                     }
             }
-//        }
         .onAppear {
            UITabBar.appearance().backgroundColor = UIColor(Color.theme.background)
             UITabBar.appearance().barTintColor = UIColor(Color.theme.background)
