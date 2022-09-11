@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="FavoriteMovieEntity" representedClassName="FavoriteMovieEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="originalTitle" attributeType="String"/>
+        <attribute name="posterPath" attributeType="String"/>
+        <attribute name="title" attributeType="String"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <elements>
+        <element name="FavoriteMovieEntity" positionX="-3424.03125" positionY="-998.94921875" width="123.48828125" height="89"/>
+    </elements>
+</model>
