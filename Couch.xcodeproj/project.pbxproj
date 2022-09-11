@@ -35,7 +35,6 @@
 		F8538F3C28CD157500BB4C4A /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8538F3B28CD157500BB4C4A /* FavoritesView.swift */; };
 		F8538F3E28CD164E00BB4C4A /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8538F3D28CD164E00BB4C4A /* FavoritesViewModel.swift */; };
 		F8538F4028CD1A1E00BB4C4A /* FavoriteIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8538F3F28CD1A1E00BB4C4A /* FavoriteIcon.swift */; };
-		F8538F4328CD234400BB4C4A /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8538F4228CD234400BB4C4A /* TabBarView.swift */; };
 		F8538F4728CD30F500BB4C4A /* MoviesContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F8538F4528CD30F500BB4C4A /* MoviesContainer.xcdatamodeld */; };
 		F8538F4928CD31B200BB4C4A /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8538F4828CD31B200BB4C4A /* DatabaseManager.swift */; };
 		F8538F4B28CD31D600BB4C4A /* FavoriteDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8538F4A28CD31D600BB4C4A /* FavoriteDataManager.swift */; };
@@ -107,7 +106,6 @@
 		F8538F3B28CD157500BB4C4A /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
 		F8538F3D28CD164E00BB4C4A /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
 		F8538F3F28CD1A1E00BB4C4A /* FavoriteIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteIcon.swift; sourceTree = "<group>"; };
-		F8538F4228CD234400BB4C4A /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		F8538F4628CD30F500BB4C4A /* FavoriteMovie.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FavoriteMovie.xcdatamodel; sourceTree = "<group>"; };
 		F8538F4828CD31B200BB4C4A /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		F8538F4A28CD31D600BB4C4A /* FavoriteDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteDataManager.swift; sourceTree = "<group>"; };
@@ -181,7 +179,6 @@
 				F8538F3A28CD155200BB4C4A /* Favorites */,
 				F82FB5B028C693750017E307 /* Details */,
 				F82FB5A328C671AB0017E307 /* Home */,
-				F8538F4128CD233200BB4C4A /* TabBar */,
 				F82FB5A928C685490017E307 /* Reusable Views */,
 				F84881F428C7A0070010AD19 /* Network */,
 				F877FF9D28CA594100993040 /* Local Data */,
@@ -313,14 +310,6 @@
 				F8538F3B28CD157500BB4C4A /* FavoritesView.swift */,
 			);
 			path = Favorites;
-			sourceTree = "<group>";
-		};
-		F8538F4128CD233200BB4C4A /* TabBar */ = {
-			isa = PBXGroup;
-			children = (
-				F8538F4228CD234400BB4C4A /* TabBarView.swift */,
-			);
-			path = TabBar;
 			sourceTree = "<group>";
 		};
 		F8538F4428CD30A100BB4C4A /* Database */ = {
@@ -533,7 +522,6 @@
 				F8538F4728CD30F500BB4C4A /* MoviesContainer.xcdatamodeld in Sources */,
 				F877FF9328CA344100993040 /* PaginationManager.swift in Sources */,
 				F8EFA7DE28CB8E060082842C /* MoviesListViewModel.swift in Sources */,
-				F8538F4328CD234400BB4C4A /* TabBarView.swift in Sources */,
 				F84881F628C7A0320010AD19 /* NetworkManager.swift in Sources */,
 				F8538F4B28CD31D600BB4C4A /* FavoriteDataManager.swift in Sources */,
 				F8EFA7E328CB99C20082842C /* View.swift in Sources */,

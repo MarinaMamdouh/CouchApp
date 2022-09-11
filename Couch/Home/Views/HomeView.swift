@@ -23,7 +23,6 @@ struct HomeView: View {
                     HomeMovieListView()
                 }
                 .navigationBarHidden(true)
-                //.navigationTitle(Constants.Texts.moviesTitle)
             }
             .environmentObject(viewModel)
         }
@@ -33,10 +32,20 @@ struct HomeView: View {
 
 extension HomeView{
     var header: some View{
-        Text(Constants.Texts.moviesTitle)
-            .padding()
-            .foregroundColor(Color.theme.primary)
+        HStack {
+            Text(Constants.Texts.moviesTitle)
+                .padding()
+                .foregroundColor(Color.theme.primary)
             .font(.largeTitle.bold())
+            Spacer()
+            NavigationLink {
+                FavoritesView()
+            } label: {
+                FavoriteIcon(isOn: .constant(true))
+            }
+
+        }
+        
         
     }
     

@@ -35,6 +35,11 @@ struct MoviesListView: View {
                 progressView
             }
         }
+        .sheet(isPresented: $viewModel.showMovieDetails) {
+            if let selectedMovie = viewModel.selectedMovie{
+                MovieDetailsView(movie: selectedMovie)
+            }
+        }
     }
     
 }
@@ -45,13 +50,9 @@ extension MoviesListView{
     var gridView: some View{
         LazyVGrid(columns: columnsLayout, spacing: 20) {
             ForEach(movieList.indices, id: \.self) { index in
-                NavigationLink(isActive: $viewModel.showMovieDetails) {
-                    if let movie = viewModel.selectedMovie {
-                            MovieDetailsView(movie: movie)
-                    }
-                } label: {
+
                     cellView(index)
-                }
+                    
             }
         }
         

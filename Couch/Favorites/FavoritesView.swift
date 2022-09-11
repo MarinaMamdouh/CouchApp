@@ -9,22 +9,20 @@ import SwiftUI
 
 struct FavoritesView: View {
     @StateObject var viewModel =  FavoritesViewModel()
+    init(){
+        self.loadNavigationBarStyle()
+    }
     var body: some View {
-        NavigationView {
             ZStack {
                 Color.theme.background
                     .ignoresSafeArea()
                 VStack{
-                    header
+                    //header
                     
                     content
                 }
             }
-            .onAppear(perform: {
-                viewModel.isShown = true
-            })
-            .navigationBarHidden(true)
-        }
+            .navigationTitle(Constants.Texts.favorites)
     }
     
     var header: some View{
@@ -43,7 +41,7 @@ struct FavoritesView: View {
                 emptyFav
                 Spacer()
             }else{
-                MoviesListView(list: $viewModel.favMovies, enableDetails: false)
+                MoviesListView(list: $viewModel.favMovies, enableDetails: true)
             }
            
         }
