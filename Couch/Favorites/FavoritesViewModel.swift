@@ -15,7 +15,7 @@ class FavoritesViewModel: ObservableObject{
     private var cancellables = Set<AnyCancellable>()
     
     init(){
-        _ = favoritesDataManager.fetchData()
+        favoritesDataManager.fetchData()
         addSubscribers()
     }
     

@@ -16,7 +16,7 @@ protocol DatabaseHandling{
     func save(_ items:[T])
     func save(_ item:T)
     func delete(_ item:T)
-    func fetchData()->[T]
+    func fetchData()
 }
 
 class DatabaseManager{

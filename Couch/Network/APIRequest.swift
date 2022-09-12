@@ -7,6 +7,7 @@
 
 import Foundation
 
+// To Provide API request for a specific endpoint and some given parameters
 enum APIRequest {
     case getMostPopularMovies(_ page: Int)
     case getTopRatedMovies(_ page: Int)
@@ -33,6 +34,7 @@ enum APIRequest {
     
     
     private var parameters: [URLQueryItem] {
+        // common Parameters like APIKey, language
         var predifinedParams = [
             Constants.APIs.apiKeyParameter,
             Constants.APIs.moviesLanguageParameter
@@ -47,6 +49,7 @@ enum APIRequest {
             )
             return predifinedParams
         case .getImage(_,_):
+            // image endpoint doesn't take request parameters
             return []
         case .getMovieDetails(_):
             return predifinedParams
@@ -57,6 +60,7 @@ enum APIRequest {
         guard let url = url else {
             preconditionFailure("Missing URL for route: \(self)")
         }
+        // add parameters(if any) to the URLRequest object
         if !parameters.isEmpty{
             var components = URLComponents(url: url, resolvingAgainstBaseURL: false)
             components?.queryItems = parameters

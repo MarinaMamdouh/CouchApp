@@ -7,6 +7,7 @@
 
 import Foundation
 
+// General File Managing for any type of file
 protocol LocalFileManaging{
     associatedtype T
     func save(file:T, fileName:String)
