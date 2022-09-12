@@ -17,19 +17,22 @@ class MovieDetailsViewModel: ObservableObject{
     @Published var imageIsLoading:Bool = true
     @Published var isFavorite:Bool = false
     @Published var isTapped: Bool = false
+    @Published var showFavorite: Bool
     private var movieDetailsService: MovieDetailsService?
     private let downloadImageService: DownloadImageService
     private let favoritesDataManager = FavoriteDataManager()
     private var cancellables = Set<AnyCancellable>()
     
-    init(movieDetails: MovieDetailsModel){
+    init(movieDetails: MovieDetailsModel, showFavorite: Bool){
         detailsModel = movieDetails
+        self.showFavorite = showFavorite
         downloadImageService = DownloadImageService(imageSize: Constants.APIs.backdropImageSize)
         addSubscribers()
     }
     
-    init(movie: MovieModel){
+    init(movie: MovieModel, showFavorite: Bool){
         self.movie = movie
+        self.showFavorite = showFavorite
         movieDetailsService = MovieDetailsService(movie: movie)
         downloadImageService = DownloadImageService(imageSize: Constants.APIs.backdropImageSize)
         favoritesDataManager.getFavoriteMovie(of: movie.id)

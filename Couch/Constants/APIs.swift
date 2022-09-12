@@ -11,6 +11,8 @@ extension Constants{
     struct APIs{
         static let apiKeyParameter = URLQueryItem(name: "api_key", value: "57ee69215969ddcd3cf245e6b151ec9b")
         
+        //static let apiKeyParameter = URLQueryItem(name: "api_key", value: "{{_PUT_API_KEY HERE_}}")
+        
         static let baseMoviesEndPoint = "https://api.themoviedb.org/3/movie"
         
         static let topRatedMoviesEndPoint = "https://api.themoviedb.org/3/movie/top_rated"

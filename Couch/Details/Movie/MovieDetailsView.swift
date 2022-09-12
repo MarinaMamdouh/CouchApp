@@ -9,17 +9,16 @@ import SwiftUI
 
 struct MovieDetailsView: View {
     @StateObject var viewModel: MovieDetailsViewModel
-    let defaultImage = Image(systemName: "video.fill")
     @State var opacity = 0.8
     private let loadingAnimation = Animation.easeInOut(duration: 1)
     
-    init(movie: MovieModel){
-        _viewModel = StateObject(wrappedValue:  MovieDetailsViewModel(movie: movie))
+    init(movie: MovieModel, showFavorite: Bool){
+        _viewModel = StateObject(wrappedValue:  MovieDetailsViewModel(movie: movie, showFavorite: showFavorite))
         self.loadNavigationBarStyle()
     }
     
-    init(details: MovieDetailsModel){
-        _viewModel =  StateObject(wrappedValue: MovieDetailsViewModel(movieDetails: details))
+    init(details: MovieDetailsModel, showFavorite: Bool){
+        _viewModel =  StateObject(wrappedValue: MovieDetailsViewModel(movieDetails: details, showFavorite: showFavorite))
         self.loadNavigationBarStyle()
     }
     
@@ -55,12 +54,15 @@ extension MovieDetailsView{
                         .aspectRatio(contentMode: .fit)
                         .cornerRadius(10)
                         .opacity(0.8)
-                    .shadow(color: .black, radius: 30, x: 0, y: 5)
+                        .shadow(color: .black, radius: 30, x: 0, y: 5)
                     
-                    FavoriteIcon(isOn: $viewModel.isFavorite)
-                        .onTapGesture {
-                            viewModel.isFavorite.toggle()
-                        }
+                    if viewModel.showFavorite{
+                        FavoriteIcon(isOn: $viewModel.isFavorite)
+                            .onTapGesture {
+                                viewModel.isFavorite.toggle()
+                            }
+                    }
+                    
                 }
             }else{
                 loadingImageBox
@@ -164,12 +166,12 @@ extension MovieDetailsView{
             opacity = 0.3
         }
     }
-
+    
 }
 
 struct MovieDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        MovieDetailsView(movie: PreviewData.movieModelExample)
+        MovieDetailsView(movie: PreviewData.movieModelExample, showFavorite: true)
     }
 }
 

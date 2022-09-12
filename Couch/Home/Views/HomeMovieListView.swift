@@ -42,7 +42,7 @@ struct HomeMovieListView: View {
     
     
     var topRatedMoviesList: some View{
-        MoviesListView(list: $viewModel.topRatedMovies, enableDetails: true, onScrollEnded: {
+        MoviesListView(list: $viewModel.topRatedMovies, showFavorite: true, onScrollEnded: {
             viewModel.isLoading = true
         })
         
@@ -50,7 +50,7 @@ struct HomeMovieListView: View {
     }
     
     var mostPopularMoviesList: some View{
-        MoviesListView(list: $viewModel.mostPopularMovies, enableDetails: true,
+        MoviesListView(list: $viewModel.mostPopularMovies, showFavorite: true,
                        onScrollEnded: {
             viewModel.isLoading = true
         })

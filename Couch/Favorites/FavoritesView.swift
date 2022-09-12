@@ -38,7 +38,7 @@ struct FavoritesView: View {
                 emptyFav
                 Spacer()
             }else{
-                MoviesListView(list: $viewModel.favMovies, enableDetails: false)
+                MoviesListView(list: $viewModel.favMovies, showFavorite: false)
             }
            
         }

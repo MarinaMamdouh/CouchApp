@@ -18,22 +18,22 @@ class MoviesListViewModel: ObservableObject{
     @Published var scrollEnded:Bool = false
     
     @Published var numberOfMovies:Int = 0
-    @Published var enableDetails:Bool = false
+    @Published var showFavorite:Bool = false
     private(set) var pagination: Bool = false
     private var cancellables = Set<AnyCancellable>()
     private var lastMovieIndex: Int{
         return numberOfMovies - 1
     }
     
-    init(enableDetails: Bool,onSelectedAction: @escaping ()->()){
-        self.enableDetails = enableDetails
+    init(showFavorite: Bool, onSelectedAction: @escaping ()->()){
+        self.showFavorite = showFavorite
         self.onScrollEnded = onSelectedAction
         self.pagination = true
         addSubscribers()
     }
     
-    init(enableDetails: Bool){
-        self.enableDetails = enableDetails
+    init(showFavorite: Bool){
+        self.showFavorite = showFavorite
         addSubscribers()
     }
     
@@ -51,7 +51,7 @@ class MoviesListViewModel: ObservableObject{
         $selectedMovie
             .sink { [weak self] selectedMovie in
                 guard let self = self  , let _ = selectedMovie else {return}
-                self.showMovieDetails = self.enableDetails
+                self.showMovieDetails = true
             }
             .store(in: &cancellables)
         
