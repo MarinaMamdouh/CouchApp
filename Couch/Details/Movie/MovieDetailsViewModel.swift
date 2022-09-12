@@ -20,7 +20,7 @@ class MovieDetailsViewModel: ObservableObject{
     @Published var showFavorite: Bool
 
     private var movieDetailsService: MovieDetailsService?
-    private let downloadImageService: DownloadImageService
+    private var downloadImageService: DownloadImageService?
     private let favoritesDataManager = FavoriteDataManager()
     private var cancellables = Set<AnyCancellable>()
     
@@ -29,7 +29,6 @@ class MovieDetailsViewModel: ObservableObject{
     init(movieDetails: MovieDetailsModel, showFavorite: Bool){
         detailsModel = movieDetails
         self.showFavorite = showFavorite
-        downloadImageService = DownloadImageService(imageSize: Constants.APIs.backdropImageSize)
         addSubscribers()
     }
     
@@ -39,7 +38,6 @@ class MovieDetailsViewModel: ObservableObject{
         self.movie = movie
         self.showFavorite = showFavorite
         movieDetailsService = MovieDetailsService(movie: movie)
-        downloadImageService = DownloadImageService(imageSize: Constants.APIs.backdropImageSize)
         favoritesDataManager.getFavoriteMovie(of: movie.id)
         addSubscribers()
     }
@@ -93,9 +91,9 @@ class MovieDetailsViewModel: ObservableObject{
     
     
     private func beginDownloadImage(backdropPath: String){
-        downloadImageService.getImage(path: backdropPath)
+        downloadImageService = DownloadImageService(imagePath: backdropPath, imageSize: Constants.APIs.backdropImageSize)
         // listen to download image service's image
-        downloadImageService.$image
+        downloadImageService?.$image
             .sink { [weak self] recievedImage in
                 // update the movie backdrop image
                 self?.movieBackdrop = recievedImage
