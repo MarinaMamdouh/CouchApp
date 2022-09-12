@@ -111,6 +111,4 @@ class APIRequestTests: XCTestCase {
         XCTAssertEqual(resultRequest.url?.absoluteString, expectedURL, "Download Backdrop Image URL is matching the expected \(expectedURL)")
         
     }
-
-
 }
