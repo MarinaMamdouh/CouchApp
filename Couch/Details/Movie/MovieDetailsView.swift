@@ -9,8 +9,6 @@ import SwiftUI
 
 struct MovieDetailsView: View {
     @StateObject var viewModel: MovieDetailsViewModel
-    @State var opacity = 0.8
-    private let loadingAnimation = Animation.easeInOut(duration: 1)
     
     init(movie: MovieModel, showFavorite: Bool){
         _viewModel = StateObject(wrappedValue:  MovieDetailsViewModel(movie: movie, showFavorite: showFavorite))
@@ -44,42 +42,23 @@ struct MovieDetailsView: View {
 
 extension MovieDetailsView{
     var movieImage: some View{
-        VStack{
+        ZStack(alignment: .topTrailing) {
+            BackdropMovieImage(image: $viewModel.movieBackdrop)
             
-            if let image = viewModel.movieBackdrop {
-                
-                ZStack(alignment: .topTrailing) {
-                    Image(uiImage:  image)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .cornerRadius(10)
-                        .opacity(0.8)
-                        .shadow(color: .black, radius: 30, x: 0, y: 5)
-                    
-                    if viewModel.showFavorite{
-                        FavoriteIcon(isOn: $viewModel.isFavorite)
-                            .onTapGesture {
-                                viewModel.isFavorite.toggle()
-                            }
-                    }
-                    
-                }
-            }else{
-                loadingImageBox
+            if viewModel.showFavorite{
+                favoriteIcon
             }
         }
         
     }
     
-    var loadingImageBox: some View{
-        Rectangle()
-            .backDropImageSize()
-            .loadingStyle()
-            .cornerRadius(10)
-            .opacity(opacity)
-            .onAppear{
-                startLoadingAnimation()
+    var favoriteIcon: some View{
+        
+        FavoriteIcon(isOn: $viewModel.isFavorite)
+            .onTapGesture {
+                viewModel.isFavorite.toggle()
             }
+        
     }
     
     var movieDetails: some View{
@@ -158,14 +137,7 @@ extension MovieDetailsView{
             Spacer()
         }
     }
-    
-    func startLoadingAnimation(){
-        withAnimation(
-            loadingAnimation.repeatForever(autoreverses: true))
-        {
-            opacity = 0.3
-        }
-    }
+
     
 }
 
