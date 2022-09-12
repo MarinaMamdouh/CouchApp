@@ -11,6 +11,7 @@ extension Constants{
     struct APIs{
         static let apiKeyParameter = URLQueryItem(name: "api_key", value: "57ee69215969ddcd3cf245e6b151ec9b")
         
+        // In Publish or sharing:
         //static let apiKeyParameter = URLQueryItem(name: "api_key", value: "{{_PUT_API_KEY HERE_}}")
         
         static let baseMoviesEndPoint = "https://api.themoviedb.org/3/movie"
@@ -28,6 +29,6 @@ extension Constants{
         static let pageParameterKey = "page"
         
         static let posterImageSize = "w185"
-        static let backdropImageSize = "w780"
+        static let backdropImageSize = "w780" //w500 is poor resolution
     }
 }

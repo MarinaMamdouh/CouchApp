@@ -8,7 +8,7 @@
 import Foundation
 
 struct Constants{
-
+    // App's Constants and general settings
 }
 
 

@@ -8,6 +8,8 @@
 import Foundation
 
 extension Constants{
+    // texts to be localized in different languages
+    // to be replaced by localizedString keys
     struct Texts{
         static let moviesTitle = "Movies"
         static let topRatedFilterBarItem = "Top Rated"

@@ -8,6 +8,7 @@
 import Foundation
 
 extension Constants{
+    // used symbols names accross the app
     struct Symbols{
         static let starFillSymbol = "star.fill"
         static let heartSymbol = "heart"

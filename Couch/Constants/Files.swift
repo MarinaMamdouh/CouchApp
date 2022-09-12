@@ -10,6 +10,6 @@ import Foundation
 extension Constants {
     struct Files{
         static let imagesFolderName = "Images"
-        static let isImageTypePNG = false
+        static let isImageTypePNG = false // API retrieve Jpeg images
     }
 }

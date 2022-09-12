@@ -12,6 +12,7 @@ extension Color{
     static let theme = ColorTheme()
 }
 
+// General Color theme
 struct ColorTheme{
     let background = Color("BackgroundColor")
     let primary = Color("PrimaryColor")
@@ -20,8 +21,4 @@ struct ColorTheme{
     let red = Color("Red")
     let shadow = Color.black
 }
-//extension Constants{
-//    struct UIColors{
-//        static let defaultBackgroundColor = UIColor(red: 26.0/255.0, green: 26.0/255.0, blue: 26.0/255.0, alpha: 1.0)
-//    }
-//}
+
