@@ -9,15 +9,17 @@ import SwiftUI
 
 struct FavoritesView: View {
     @StateObject var viewModel =  FavoritesViewModel()
+    
     init(){
         self.loadNavigationBarStyle()
     }
+    
     var body: some View {
             ZStack {
                 Color.theme.background
                     .ignoresSafeArea()
                 
-                content
+                favoritesList
             }
             .navigationTitle(Constants.Texts.favorites)
     }
@@ -32,30 +34,27 @@ struct FavoritesView: View {
         }
     }
     
-    var content: some View{
+    var favoritesList: some View{
         VStack{
             if viewModel.favMovies.isEmpty{
-                emptyFav
-                Spacer()
+                emptyFavoritesMessage
+                
             }else{
                 MoviesListView(list: $viewModel.favMovies, showFavorite: false)
+                    .padding()
             }
-           
         }
-        .padding()
+        
     }
     
-    var emptyFav: some View{
+    var emptyFavoritesMessage: some View{
         VStack{
-            HStack{
-                
-            }
-            .background(Color.theme.background)
-            .frame(height: 100)
             Text(Constants.Texts.emptyFavorites)
                 .font(.title)
                 .foregroundColor(Color.theme.secondary)
                 .padding()
+                .padding(.top, 100)
+            Spacer()
         }
     }
 }

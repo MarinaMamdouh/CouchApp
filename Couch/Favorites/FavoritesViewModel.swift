@@ -10,8 +10,7 @@ import Combine
 
 class FavoritesViewModel: ObservableObject{
     @Published var favMovies: [MovieModel] = []
-    @Published var isShown: Bool = false
-    
+    // Services and cancellables ///
     private let favoritesDataManager = FavoriteDataManager()
     private var cancellables = Set<AnyCancellable>()
     
@@ -21,23 +20,22 @@ class FavoritesViewModel: ObservableObject{
     }
     
     private func addSubscribers(){
-        $isShown
-            .sink {[weak self] favIsShown in
-                if favIsShown {
-                    _ = self?.favoritesDataManager.fetchData()
-                }
-            }
-            .store(in: &cancellables)
-        
+        // listen to favoriteDataManager fetched movie entities
         favoritesDataManager.$favoriteMovies
             .sink { [weak self] fetchedFavMovies in
-                var fetchedMovies = [MovieModel]()
-                for movie in fetchedFavMovies{
-                    fetchedMovies.append(movie.mapToMovieModel())
-                }
-                self?.favMovies = fetchedMovies
+                self?.updateFavorites(entities: fetchedFavMovies)
             }
             .store(in: &cancellables)
-        
+    }
+    
+    // update favorite movie models list with retrieved entities from core data
+    private func updateFavorites(entities: [FavoriteMovieEntity]){
+        var fetchedMovies = [MovieModel]()
+        // map all entities for movie models
+        for entity in entities{
+            fetchedMovies.append(entity.mapToMovieModel())
+        }
+        // update favorite movies list
+        self.favMovies = fetchedMovies
     }
 }
