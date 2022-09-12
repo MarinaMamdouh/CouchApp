@@ -26,7 +26,7 @@ class HomeViewModel: ObservableObject{
     private(set) var listTypesNames:[String] = [] // strings of lists titles to provide it to UI
     
     // coressponding array of listType items arranged (for future use we can add more types of lists e.g. comming soon , New , specific genre list)
-    private let listTypes:[ListType] = [.mostPopular, .topRated]
+    private(set) var listTypes:[ListType] = [.mostPopular, .topRated]
     
     //// Services and Cancellables properties
     private var topRatedMovieService: MoviesService
@@ -34,7 +34,20 @@ class HomeViewModel: ObservableObject{
     private var cancellables = Set<AnyCancellable>()
     
     init(){
+        currentSorting = listTypes.first ?? .mostPopular
+        // initialize the needed Services
+        mostPopularMovieService = MoviesService(listType: .mostPopular)
+        topRatedMovieService = MoviesService(listType: .topRated)
+        // generate the list Types titles that UI will need
+        generateListTypesNames()
+        // Subscribe to all needed publishers and services changes
+        subscribeToServices()
+        subscribeToPublishers()
+    }
+    
+    init(listTypes: [ListType]){
         // set the default list Type to be the first on of our predefined list (.mostPopular)
+        self.listTypes = listTypes
         currentSorting = listTypes.first ?? .mostPopular
         // initialize the needed Services
         mostPopularMovieService = MoviesService(listType: .mostPopular)
