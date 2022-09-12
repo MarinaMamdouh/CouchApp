@@ -9,7 +9,6 @@ import Foundation
 import Combine
 
 class HomeViewModel: ObservableObject{
-    ///////////////Publishers properties////////////////
 
     @Published var topRatedMovies:[MovieModel] = [] // top Rated Movies Data
     @Published var mostPopularMovies:[MovieModel] = [] // most Popular Movies Data
@@ -18,15 +17,15 @@ class HomeViewModel: ObservableObject{
     // current displayed list type
     @Published var currentSorting:ListType
     // state that show us if UI needs to load data or not
-    @Published var isLoading:Bool = false
+    @Published var isLoading: Bool = false
     
-    @Published var noData:Bool = true
-    //////////////Private properties////////////////
-    //////////////////////////////////////////////
+    @Published var noTopRatedData: Bool = true
+    @Published var noMostPopularData: Bool = true
     
     /// Properties that Handle ListTypes dynamicly
     private(set) var listTypesNames:[String] = [] // strings of lists titles to provide it to UI
-    // coressponding array of listType items arranged
+    
+    // coressponding array of listType items arranged (for future use we can add more types of lists e.g. comming soon , New , specific genre list)
     private let listTypes:[ListType] = [.mostPopular, .topRated]
     
     //// Services and Cancellables properties
@@ -47,6 +46,7 @@ class HomeViewModel: ObservableObject{
         subscribeToPublishers()
     }
     
+    // generate list types names for View to display ("Most Popular", "Top Rated")
     private func generateListTypesNames(){
         for listType in listTypes{
             listTypesNames.append(listType.displayedText)
@@ -57,22 +57,27 @@ class HomeViewModel: ObservableObject{
         // subscribe on Top Rated Movies service retrieved list
         topRatedMovieService.$moviesList
             .sink { [weak self] (recievedMovies) in
-                self?.topRatedMovies = recievedMovies
-                self?.isLoading = false
-                if !recievedMovies.isEmpty{
-                    self?.noData = false
-                }
+                guard let self = self else {return}
+                // update topRated movies list
+                self.topRatedMovies = recievedMovies
+                // update Loading status
+                self.isLoading = false
+                // check if top Rated Movies list is not empty
+                // to update noData flag
+                self.noTopRatedData = self.topRatedMovies.isEmpty
             }
             .store(in: &cancellables)
         
         // subscribe on Most Popular Movies service retrieved list
         mostPopularMovieService.$moviesList
             .sink {[weak self] (recievedMovies) in
-                self?.mostPopularMovies = recievedMovies
-                self?.isLoading = false
-                if !recievedMovies.isEmpty{
-                    self?.noData = false
-                }
+                guard let self = self else {return}
+                self.mostPopularMovies = recievedMovies
+                // update Loading status
+                self.isLoading = false
+                // check if Most Popular Movies list is not empty
+                // to update noData flag
+                self.noMostPopularData = self.mostPopularMovies.isEmpty
             }
             .store(in: &cancellables)
             
@@ -109,6 +114,13 @@ class HomeViewModel: ObservableObject{
             mostPopularMovieService.getMovies()
         }
         
+    }
+    
+    private func noDataInLists()->Bool{
+        if topRatedMovies.isEmpty && mostPopularMovies.isEmpty{
+            return true
+        }
+        return false
     }
    
 

@@ -20,8 +20,7 @@ struct HomeView: View {
                     
                     sortingBar
                     
-                    HomeMovieListView()
-                        .padding(.horizontal)
+                    HomeMoviesListView()
                 }
                 .navigationBarHidden(true)
             }
@@ -37,7 +36,7 @@ extension HomeView{
             Text(Constants.Texts.moviesTitle)
                 .padding()
                 .foregroundColor(Color.theme.primary)
-            .font(.largeTitle.bold())
+                .font(.largeTitle.bold())
             
             Spacer()
             
@@ -46,13 +45,13 @@ extension HomeView{
             } label: {
                 FavoriteIcon(isOn: .constant(true))
             }
-
+            
         }
         
         
     }
     
-
+    
     var sortingBar: some View{
         FilterBarView(selectedItem: $viewModel.selectedListTypeIndex, barItems: viewModel.listTypesNames)
     }
